@@ -73,50 +73,49 @@ public class Location  implements DatabaseManagement {
     return this.id;
   }
 
-  //
-  // public String getName() {
-  //   return name;
-  // }
-  //
-  // public void setName(String name) {
-  //   this.name=name;
-  //   try(Connection cn = DB.sql2o.open()) {
-  //     String sql = "UPDATE animals SET name = :name WHERE id = :id";
-  //     cn.createQuery(sql)
-  //       .addParameter("name", name)
-  //       .addParameter("id", id)
-  //       .executeUpdate();
-  //   }
-  // }
-  //
-  // public String getPhoto() {
-  //   return photo;
-  // }
-  //
-  // public void setPhoto(String photo) {
-  //   this.photo=photo;
-  //   try(Connection cn = DB.sql2o.open()) {
-  //     String sql = "UPDATE animals SET photo = :photo WHERE id = :id";
-  //     cn.createQuery(sql)
-  //       .addParameter("photo", photo)
-  //       .addParameter("id", id)
-  //       .executeUpdate();
-  //   }
-  // }
-  //
-  // public String getType() {
-  //   return type;
-  // }
-  //
-  // public void setType(String type) {
-  //   this.type=type;
-  //   try(Connection cn = DB.sql2o.open()) {
-  //     String sql = "UPDATE animals SET type = :type WHERE id = :id";
-  //     cn.createQuery(sql)
-  //       .addParameter("type", type)
-  //       .addParameter("id", id)
-  //       .executeUpdate();
-  //   }
-  // }
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description=description;
+    try(Connection cn = DB.sql2o.open()) {
+      String sql = "UPDATE locations SET description = :description WHERE id = :id";
+      cn.createQuery(sql)
+        .addParameter("description", description)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
+
+  public int getMapRow() {
+    return maprow;
+  }
+
+  public void setMapRow(int maprow) {
+    this.maprow=maprow;
+    try(Connection cn = DB.sql2o.open()) {
+      String sql = "UPDATE locations SET maprow = :maprow WHERE id = :id";
+      cn.createQuery(sql)
+        .addParameter("maprow", maprow)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
+
+  public int getMapCol() {
+    return mapcol;
+  }
+
+  public void setMapCol(int mapcol) {
+    this.mapcol=mapcol;
+    try(Connection cn = DB.sql2o.open()) {
+      String sql = "UPDATE locations SET mapcol = :mapcol WHERE id = :id";
+      cn.createQuery(sql)
+        .addParameter("mapcol", mapcol)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
 
 }
