@@ -51,19 +51,34 @@ public class Ranger extends Person {
     }
   }
 
-  // public String getNotes() {
-  //   return notes;
-  // }
-  //
-  // public void setNotes(String notes) {
-  //   this.notes=notes;
-  //   try(Connection cn = DB.sql2o.open()) {
-  //     String sql = "UPDATE clients SET notes = :notes WHERE id = :id";
-  //     cn.createQuery(sql)
-  //       .addParameter("notes", notes)
-  //       .addParameter("id", id)
-  //       .executeUpdate();
-  //   }
-  // }
+  public int getBadge() {
+    return badge;
+  }
+
+  public void setBadge(int badge) {
+    this.badge=badge;
+    try(Connection cn = DB.sql2o.open()) {
+      String sql = "UPDATE people SET badge = :badge WHERE id = :id";
+      cn.createQuery(sql)
+        .addParameter("badge", badge)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
+
+  public String getContact() {
+    return workcontact;
+  }
+
+  public void setContact(String workcontact) {
+    this.workcontact=workcontact;
+    try(Connection cn = DB.sql2o.open()) {
+      String sql = "UPDATE people SET workcontact = :workcontact WHERE id = :id";
+      cn.createQuery(sql)
+        .addParameter("workcontact", workcontact)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
 
 }

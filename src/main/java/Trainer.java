@@ -52,18 +52,33 @@ public class Trainer extends Person {
     }
   }
 
-  // public String getNotes() {
-  //   return notes;
-  // }
-  //
-  // public void setNotes(String notes) {
-  //   this.notes=notes;
-  //   try(Connection cn = DB.sql2o.open()) {
-  //     String sql = "UPDATE clients SET notes = :notes WHERE id = :id";
-  //     cn.createQuery(sql)
-  //       .addParameter("notes", notes)
-  //       .addParameter("id", id)
-  //       .executeUpdate();
-  //   }
-  // }
+  public String getTrainerName() {
+    return trainerName;
+  }
+
+  public void setTrainerName(String nickname) {
+    this.trainerName=nickname;
+    try(Connection cn = DB.sql2o.open()) {
+      String sql = "UPDATE people SET trainername = :trainername WHERE id = :id";
+      cn.createQuery(sql)
+        .addParameter("trainername", nickname)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
+
+  public int getLevel() {
+    return level;
+  }
+
+  public void setLevel(int level) {
+    this.level=level;
+    try(Connection cn = DB.sql2o.open()) {
+      String sql = "UPDATE people SET level = :level WHERE id = :id";
+      cn.createQuery(sql)
+        .addParameter("level", level)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
 }

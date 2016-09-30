@@ -36,14 +36,25 @@ public class RangerTest {
     assertTrue(Ranger.find(ranger1.getId()).equals(ranger1));
   }
 
-  // @Test
-  // public void getNotes_returnsCorrectNotes_String() {
-  //   assertEquals("allergies", client.getNotes());
-  // }
-  //
-  // @Test
-  // public void setNotes_updatesNotes_String() {
-  //   client2.setNotes("allergies");
-  //   assertEquals("allergies", Client.find(client2.getId()).getNotes());
-  // }
+  @Test
+  public void getBadge_returnsCorrectBadge_String() {
+    assertEquals(2345, ranger1.getBadge());
+  }
+
+  @Test
+  public void setBadge_updatesBadge_String() {
+    ranger2.setBadge(2345);
+    assertEquals(2345, Ranger.find(ranger2.getId()).getBadge());
+  }
+
+  @Test
+  public void getNotes_returnsCorrectNotes_String() {
+    assertEquals("ranger.jones@park.com", ranger1.getContact());
+  }
+
+  @Test
+  public void setNotes_updatesNotes_String() {
+    ranger2.setContact("anger.jones@park.com");
+    assertEquals("anger.jones@park.com", Ranger.find(ranger2.getId()).getContact());
+  }
 }

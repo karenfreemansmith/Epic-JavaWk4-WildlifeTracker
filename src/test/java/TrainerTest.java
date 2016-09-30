@@ -36,14 +36,25 @@ public class TrainerTest {
     assertTrue(Trainer.find(trainer1.getId()).equals(trainer1));
   }
 
-  // @Test
-  // public void getNotes_returnsCorrectNotes_String() {
-  //   assertEquals("allergies", client.getNotes());
-  // }
-  //
-  // @Test
-  // public void setNotes_updatesNotes_String() {
-  //   client2.setNotes("allergies");
-  //   assertEquals("allergies", Client.find(client2.getId()).getNotes());
-  // }
+  @Test
+  public void getTrainerName_returnsCorrectTrainerName_String() {
+    assertEquals("YogiBear", trainer1.getTrainerName());
+  }
+
+  @Test
+  public void setNotes_updatesTrainerName_String() {
+    trainer2.setTrainerName("CindiBear");
+    assertEquals("CindiBear", Trainer.find(trainer2.getId()).getTrainerName());
+  }
+
+  @Test
+  public void getLevel_returnsCorrectLevel_String() {
+    assertEquals(14, trainer1.getLevel());
+  }
+
+  @Test
+  public void setLevel_updatesLevel_String() {
+    trainer2.setLevel(22);
+    assertEquals(22, Trainer.find(trainer2.getId()).getLevel());
+  }
 }

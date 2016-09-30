@@ -43,56 +43,129 @@ public abstract class Person  implements DatabaseManagement {
     return sightings;
   }
 
-
-  // getters and setters for each property
   public int getId() {
     return this.id;
   }
 
-  //
-  // public String getName() {
-  //   return name;
-  // }
-  //
-  // public void setName(String name) {
-  //   this.name=name;
-  //   try(Connection cn = DB.sql2o.open()) {
-  //     String sql = "UPDATE animals SET name = :name WHERE id = :id";
-  //     cn.createQuery(sql)
-  //       .addParameter("name", name)
-  //       .addParameter("id", id)
-  //       .executeUpdate();
-  //   }
-  // }
-  //
-  // public String getPhoto() {
-  //   return photo;
-  // }
-  //
-  // public void setPhoto(String photo) {
-  //   this.photo=photo;
-  //   try(Connection cn = DB.sql2o.open()) {
-  //     String sql = "UPDATE animals SET photo = :photo WHERE id = :id";
-  //     cn.createQuery(sql)
-  //       .addParameter("photo", photo)
-  //       .addParameter("id", id)
-  //       .executeUpdate();
-  //   }
-  // }
-  //
-  // public String getType() {
-  //   return type;
-  // }
-  //
-  // public void setType(String type) {
-  //   this.type=type;
-  //   try(Connection cn = DB.sql2o.open()) {
-  //     String sql = "UPDATE animals SET type = :type WHERE id = :id";
-  //     cn.createQuery(sql)
-  //       .addParameter("type", type)
-  //       .addParameter("id", id)
-  //       .executeUpdate();
-  //   }
-  // }
+  public String getFirstName() {
+    return firstname;
+  }
+
+  public void setFirstName(String name) {
+    this.firstname=name;
+    try(Connection cn = DB.sql2o.open()) {
+      String sql = "UPDATE people SET firstname = :firstname WHERE id = :id";
+      cn.createQuery(sql)
+        .addParameter("firstname", name)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
+
+  public String getLastName() {
+    return lastname;
+  }
+
+  public void setLastName(String name) {
+    this.lastname=name;
+    try(Connection cn = DB.sql2o.open()) {
+      String sql = "UPDATE people SET lastname = :lastname WHERE id = :id";
+      cn.createQuery(sql)
+        .addParameter("lastname", name)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
+
+  public String getPhoneNumber() {
+    return phonenumber;
+  }
+
+  public void setPhoneNumber(String phone) {
+    this.phonenumber=phone;
+    try(Connection cn = DB.sql2o.open()) {
+      String sql = "UPDATE people SET phonenumber = :phonenumber WHERE id = :id";
+      cn.createQuery(sql)
+        .addParameter("phonenumber", phone)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
+
+  public String getAddress() {
+    return address;
+  }
+
+  public void setAddress(String address) {
+    this.address=address;
+    try(Connection cn = DB.sql2o.open()) {
+      String sql = "UPDATE people SET address = :address WHERE id = :id";
+      cn.createQuery(sql)
+        .addParameter("address", address)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
+
+  public String getCity() {
+    return city;
+  }
+
+  public void setCity(String city) {
+    this.city=city;
+    try(Connection cn = DB.sql2o.open()) {
+      String sql = "UPDATE people SET city = :city WHERE id = :id";
+      cn.createQuery(sql)
+        .addParameter("city", city)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
+
+  public String getState() {
+    return state;
+  }
+
+  public void setState(String state) {
+    this.state=state;
+    try(Connection cn = DB.sql2o.open()) {
+      String sql = "UPDATE people SET state = :state WHERE id = :id";
+      cn.createQuery(sql)
+        .addParameter("state", state)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
+
+  public String getZip() {
+    return zip;
+  }
+
+  public void setZip(String zip) {
+    this.zip=zip;
+    try(Connection cn = DB.sql2o.open()) {
+      String sql = "UPDATE people SET zip = :zip WHERE id = :id";
+      cn.createQuery(sql)
+        .addParameter("zip", zip)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email=email;
+    try(Connection cn = DB.sql2o.open()) {
+      String sql = "UPDATE people SET email = :email WHERE id = :id";
+      cn.createQuery(sql)
+        .addParameter("email", email)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
+
 
 }
