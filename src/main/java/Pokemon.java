@@ -9,35 +9,30 @@ public class Pokemon extends Animal {
     this.cp = cp;
   }
 
-  //
-  // public String getName() {
-  //   return name;
-  // }
-  //
-  // public void setName(String name) {
-  //   this.name=name;
-  //   try(Connection cn = DB.sql2o.open()) {
-  //     String sql = "UPDATE animals SET name = :name WHERE id = :id";
-  //     cn.createQuery(sql)
-  //       .addParameter("name", name)
-  //       .addParameter("id", id)
-  //       .executeUpdate();
-  //   }
-  // }
-  //
-  // public String getPhoto() {
-  //   return photo;
-  // }
-  //
-  // public void setPhoto(String photo) {
-  //   this.photo=photo;
-  //   try(Connection cn = DB.sql2o.open()) {
-  //     String sql = "UPDATE animals SET photo = :photo WHERE id = :id";
-  //     cn.createQuery(sql)
-  //       .addParameter("photo", photo)
-  //       .addParameter("id", id)
-  //       .executeUpdate();
-  //   }
-  // }
+  public static Pokemon find(int id) {
+    try(Connection cn = DB.sql2o.open()) {
+      String sql = "SELECT * FROM animals WHERE id=:id";
+      Pokemon animal = cn.createQuery(sql)
+        .addParameter("id", id)
+        .throwOnMappingFailure(false)
+        .executeAndFetchFirst(Pokemon.class);
+      return animal;
+    }
+  }
+
+  public int getCP() {
+    return cp;
+  }
+
+  public void setCP(int cp) {
+    this.cp=cp;
+    try(Connection cn = DB.sql2o.open()) {
+      String sql = "UPDATE animals SET cp = :cp WHERE id = :id";
+      cn.createQuery(sql)
+        .addParameter("cp", cp)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
 
 }

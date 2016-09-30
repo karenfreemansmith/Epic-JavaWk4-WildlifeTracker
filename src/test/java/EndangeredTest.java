@@ -36,25 +36,25 @@ public class EndangeredTest {
     assertTrue(Endangered.find(endangered1.getId()).equals(endangered1));
   }
 
-  // @Test
-  // public void getNotes_returnsCorrectNotes_String() {
-  //   assertEquals("allergies", client.getNotes());
-  // }
-  //
-  // @Test
-  // public void setNotes_updatesNotes_String() {
-  //   client2.setNotes("allergies");
-  //   assertEquals("allergies", Client.find(client2.getId()).getNotes());
-  // }
+  @Test
+  public void getAge_returnsCorrectAge_String() {
+    assertEquals(1, endangered1.getAge());
+  }
 
-  // @Test
-  // public void getNotes_returnsCorrectNotes_String() {
-  //   assertEquals("allergies", client.getNotes());
-  // }
-  //
-  // @Test
-  // public void setNotes_updatesNotes_String() {
-  //   client2.setNotes("allergies");
-  //   assertEquals("allergies", Client.find(client2.getId()).getNotes());
-  // }
+  @Test
+  public void setAge_updatesAge_int() {
+    endangered2.setAge(2);
+    assertEquals(2, Endangered.find(endangered2.getId()).getAge());
+  }
+
+  @Test
+  public void getHealth_returnsCorrectHealth_String() {
+    assertEquals(1, endangered1.getHealth());
+  }
+
+  @Test
+  public void setHealth_updatesHealth_int() {
+    endangered2.setHealth(1);
+    assertEquals(1, Endangered.find(endangered2.getId()).getHealth());
+  }
 }

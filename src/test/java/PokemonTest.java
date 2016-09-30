@@ -36,25 +36,14 @@ public class PokemonTest {
     assertTrue(Pokemon.find(pokemon1.getId()).equals(pokemon1));
   }
 
-  // @Test
-  // public void getNotes_returnsCorrectNotes_String() {
-  //   assertEquals("allergies", client.getNotes());
-  // }
-  //
-  // @Test
-  // public void setNotes_updatesNotes_String() {
-  //   client2.setNotes("allergies");
-  //   assertEquals("allergies", Client.find(client2.getId()).getNotes());
-  // }
+  @Test
+  public void getCP_returnsCorrectCP_String() {
+    assertEquals(456, pokemon1.getCP());
+  }
 
-  // @Test
-  // public void getNotes_returnsCorrectNotes_String() {
-  //   assertEquals("allergies", client.getNotes());
-  // }
-  //
-  // @Test
-  // public void setNotes_updatesNotes_String() {
-  //   client2.setNotes("allergies");
-  //   assertEquals("allergies", Client.find(client2.getId()).getNotes());
-  // }
+  @Test
+  public void setNotes_updatesNotes_String() {
+    pokemon2.setCP(23);
+    assertEquals(23, Pokemon.find(pokemon2.getId()).getCP());
+  }
 }
