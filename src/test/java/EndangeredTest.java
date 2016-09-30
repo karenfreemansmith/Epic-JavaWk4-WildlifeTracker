@@ -10,7 +10,12 @@ public class EndangeredTest {
 
   @Before
   public void setup() {
-    endangered1 = new Endangered();
-    endangered2 = new Endangered();
+    endangered1 = new Endangered("spotted owl", "image.jpg", 2, 1, 1);
+    endangered2 = new Endangered("Canada Lynx", "image.jpg", 2, 2, 3);
+  }
+
+  @Test
+  public void Endangered_instantiatesCorrectly_true() {
+    assertTrue(endangered1 instanceof Endangered);
   }
 }

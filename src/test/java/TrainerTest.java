@@ -10,7 +10,12 @@ public class TrainerTest {
 
   @Before
   public void setup() {
-    trainer1 = new Trainer();
-    trainer2 = new Trainer();
+    trainer1 = new Trainer("Joe", "Smith", "321-456-9876", "1234 Center St", "Bolder", "MT", "65432", "joe@smith.com", "YogiBear", 14);
+    trainer2 = new Trainer("Sue", "Smith", "321-456-1234", "1234 Center St", "Bolder", "MT", "65432", "sue@smith.com", "PicinicBasket", 20);
+  }
+
+  @Test
+  public void Trainer_instantiatesCorrectly_true() {
+    assertTrue(trainer1 instanceof Trainer);
   }
 }

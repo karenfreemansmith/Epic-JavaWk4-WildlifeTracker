@@ -10,7 +10,12 @@ public class SightingTest {
 
   @Before
   public void setup() {
-    sighting1 = new Sighting();
-    sighting2 = new Sighting();
+    sighting1 = new Sighting(1,2,2);
+    sighting2 = new Sighting(2,1,1);
+  }
+
+  @Test
+  public void Sighting_instantiatesCorrectly_true() {
+    assertTrue(sighting1 instanceof Sighting);
   }
 }

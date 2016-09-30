@@ -3,9 +3,32 @@ import java.util.List;
 import java.util.ArrayList;
 
 public abstract class Person  implements DatabaseManagement {
-  // object properties
+  public int id;
+  public String lastname;
+  public String firstname;
+  public String phonenumber;
+  public String address;
+  public String city;
+  public String state;
+  public String zip;
+  public String email;
 
-  public void save() {}
+  public void save() {
+    try(Connection cn = DB.sql2o.open()) {
+      String sql = "INSERT INTO people (firstname, lastname, phonenumber, address, city, state, zip, email) VALUES (:firstname, :lastname, :phonenumber, :address, :city, :state, :zip, :email)";
+      this.id = (int) cn.createQuery(sql, true)
+        .addParameter("lastname", this.lastname)
+        .addParameter("firstname", this.firstname)
+        .addParameter("phonenumber", this.phonenumber)
+        .addParameter("address", this.address)
+        .addParameter("city", this.city)
+        .addParameter("state", this.state)
+        .addParameter("zip", this.zip)
+        .addParameter("email", this.email)
+        .executeUpdate()
+        .getKey();
+    }
+  }
   public void delete() {}
 
   @Override

@@ -3,11 +3,29 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Animal implements DatabaseManagement {
-  // object properties
+  public int id;
+  public String animalname;
+  public String photo;
+  public int type;
 
-  public Animal() {}
+  public Animal(String name, String photo, int type) {
+    this.animalname = name;
+    this.photo = photo;
+    this.type = type;
+    this.save();
+  }
 
-  public void save() {}
+  public void save() {
+    try(Connection cn = DB.sql2o.open()) {
+      String sql = "INSERT INTO animals (animalname, photo, type) VALUES (:name, :photo, :type)";
+      this.id = (int) cn.createQuery(sql, true)
+        .addParameter("name", this.animalname)
+        .addParameter("photo", this.photo)
+        .addParameter("type", this.type)
+        .executeUpdate()
+        .getKey();
+    }
+  }
   public void delete() {}
 
   @Override
@@ -16,8 +34,13 @@ public class Animal implements DatabaseManagement {
   }
 
   public static Animal find(int id) {
-    Animal animal = new Animal();
-    return animal;
+    try(Connection cn = DB.sql2o.open()) {
+      String sql = "SELECT * FROM animals WHERE id=:id";
+      Animal animal = cn.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetchFirst(Animal.class);
+      return animal;
+    }
   }
 
   public static List<Animal> all() {

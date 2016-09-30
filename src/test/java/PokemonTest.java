@@ -10,7 +10,12 @@ public class PokemonTest {
 
   @Before
   public void setup() {
-    pokemon1 = new Pokemon();
-    pokemon2 = new Pokemon();
+    pokemon1 = new Pokemon("Pikachu", "", 3, 456);
+    pokemon2 = new Pokemon("Zapados", "", 3, 234);
+  }
+
+  @Test
+  public void Pokemon_instantiatesCorrectly_true() {
+    assertTrue(pokemon1 instanceof Pokemon);
   }
 }

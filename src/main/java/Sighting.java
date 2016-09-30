@@ -5,11 +5,28 @@ import java.util.Date;
 import java.sql.Timestamp;
 
 public class Sighting  implements DatabaseManagement {
-  // object properties
+  private int id;
+  private int personId;
+  private int animalId;
+  private int locationId;
 
-  public Sighting() {}
+  public Sighting(int personId, int animalId, int locationId) {
+    this.personId = personId;
+    this.animalId = animalId;
+    this.locationId = locationId;
+  }
 
-  public void save() {}
+  public void save() {
+    try(Connection cn = DB.sql2o.open()) {
+      String sql = "INSERT INTO sightings (personId, animalId, locationId, time) VALUES personID, :animalId, :locationId, now())";
+      this.id = (int) cn.createQuery(sql, true)
+        .addParameter("personId", this.personId)
+        .addParameter("animalId", this.animalId)
+        .addParameter("locationId", this.locationId)
+        .executeUpdate()
+        .getKey();
+    }
+  }
   public void delete() {}
 
   @Override
@@ -18,8 +35,13 @@ public class Sighting  implements DatabaseManagement {
   }
 
   public static Sighting find(int id) {
-    Sighting sighting = new Sighting();
-    return sighting;
+    try(Connection cn = DB.sql2o.open()) {
+      String sql = "SELECT * FROM sightings WHERE id=:id";
+      Sighting sighting = cn.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetchFirst(Sighting.class);
+      return sighting;
+    }
   }
 
   public static List<Sighting> all() {
