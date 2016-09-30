@@ -9,18 +9,35 @@ public class Pokemon extends Animal {
     this.cp = cp;
   }
 
-  // public String getNotes() {
-  //   return notes;
+  //
+  // public String getName() {
+  //   return name;
   // }
   //
-  // public void setNotes(String notes) {
-  //   this.notes=notes;
+  // public void setName(String name) {
+  //   this.name=name;
   //   try(Connection cn = DB.sql2o.open()) {
-  //     String sql = "UPDATE clients SET notes = :notes WHERE id = :id";
+  //     String sql = "UPDATE animals SET name = :name WHERE id = :id";
   //     cn.createQuery(sql)
-  //       .addParameter("notes", notes)
+  //       .addParameter("name", name)
   //       .addParameter("id", id)
   //       .executeUpdate();
   //   }
   // }
+  //
+  // public String getPhoto() {
+  //   return photo;
+  // }
+  //
+  // public void setPhoto(String photo) {
+  //   this.photo=photo;
+  //   try(Connection cn = DB.sql2o.open()) {
+  //     String sql = "UPDATE animals SET photo = :photo WHERE id = :id";
+  //     cn.createQuery(sql)
+  //       .addParameter("photo", photo)
+  //       .addParameter("id", id)
+  //       .executeUpdate();
+  //   }
+  // }
+
 }

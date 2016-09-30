@@ -46,4 +46,15 @@ public class EndangeredTest {
   //   client2.setNotes("allergies");
   //   assertEquals("allergies", Client.find(client2.getId()).getNotes());
   // }
+
+  // @Test
+  // public void getNotes_returnsCorrectNotes_String() {
+  //   assertEquals("allergies", client.getNotes());
+  // }
+  //
+  // @Test
+  // public void setNotes_updatesNotes_String() {
+  //   client2.setNotes("allergies");
+  //   assertEquals("allergies", Client.find(client2.getId()).getNotes());
+  // }
 }

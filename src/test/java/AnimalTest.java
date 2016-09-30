@@ -38,14 +38,36 @@ public class AnimalTest {
     assertTrue(Animal.find(animal1.getId()).equals(animal1));
   }
 
-  // @Test
-  // public void getNotes_returnsCorrectNotes_String() {
-  //   assertEquals("allergies", client.getNotes());
-  // }
-  //
-  // @Test
-  // public void setNotes_updatesNotes_String() {
-  //   client2.setNotes("allergies");
-  //   assertEquals("allergies", Client.find(client2.getId()).getNotes());
-  // }
+  @Test
+  public void getName_returnsCorrectName_String() {
+    assertEquals("Yogi Bear", animal1.getName());
+  }
+
+  @Test
+  public void setName_updatesName_String() {
+    animal1.setName("Brown Bear");
+    assertEquals("Brown Bear", Animal.find(animal1.getId()).getName());
+  }
+
+  @Test
+  public void getPhoto_returnsCorrectPhoto_String() {
+    assertEquals("image.jpg", animal1.getPhoto());
+  }
+
+  @Test
+  public void setPhoto_updatesPhoto_String() {
+    animal2.setPhoto("image.jpg");
+    assertEquals("image.jpg", Animal.find(animal2.getId()).getPhoto());
+  }
+
+  @Test
+  public void getType_returnsCorrectType_String() {
+    assertEquals(2, animal2.getType());
+  }
+
+  @Test
+  public void setType_updatesNotes_String() {
+    animal2.setType(3);
+    assertEquals(3, Animal.find(animal2.getId()).getType());
+  }
 }

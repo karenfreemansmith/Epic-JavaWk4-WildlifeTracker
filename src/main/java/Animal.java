@@ -74,19 +74,49 @@ public class Animal implements DatabaseManagement {
     return this.id;
   }
 
-  // public String getNotes() {
-  //   return notes;
-  // }
-  //
-  // public void setNotes(String notes) {
-  //   this.notes=notes;
-  //   try(Connection cn = DB.sql2o.open()) {
-  //     String sql = "UPDATE clients SET notes = :notes WHERE id = :id";
-  //     cn.createQuery(sql)
-  //       .addParameter("notes", notes)
-  //       .addParameter("id", id)
-  //       .executeUpdate();
-  //   }
-  // }
+  public String getName() {
+    return animalname;
+  }
+
+  public void setName(String name) {
+    this.animalname=name;
+    try(Connection cn = DB.sql2o.open()) {
+      String sql = "UPDATE animals SET animalname = :name WHERE id = :id";
+      cn.createQuery(sql)
+        .addParameter("name", animalname)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
+
+  public String getPhoto() {
+    return photo;
+  }
+
+  public void setPhoto(String photo) {
+    this.photo=photo;
+    try(Connection cn = DB.sql2o.open()) {
+      String sql = "UPDATE animals SET photo = :photo WHERE id = :id";
+      cn.createQuery(sql)
+        .addParameter("photo", photo)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
+
+  public int getType() {
+    return type;
+  }
+
+  public void setType(int type) {
+    this.type=type;
+    try(Connection cn = DB.sql2o.open()) {
+      String sql = "UPDATE animals SET type = :type WHERE id = :id";
+      cn.createQuery(sql)
+        .addParameter("type", type)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
 
 }
