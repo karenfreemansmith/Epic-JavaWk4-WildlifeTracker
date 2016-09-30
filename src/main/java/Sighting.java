@@ -1,25 +1,33 @@
 import org.sql2o.*;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Date;
 import java.sql.Timestamp;
 
 public class Sighting  implements DatabaseManagement {
   // object properties
 
-  public Animal() {}
+  public Sighting() {}
 
   public void save() {}
   public void delete() {}
 
-  @Overrides
-  public boolean equals(Object otherObject) {}
+  @Override
+  public boolean equals(Object otherObject) {
+    return false;
+  }
 
-  public static Animal find(int id) {}
+  public static Sighting find(int id) {
+    Sighting sighting = new Sighting();
+    return sighting;
+  }
 
-  public static List<Animal> all() {}
-  public static List<Animal> allByLocation() {}
-  public static List<Animal> allByRanger() {}
-  public static List<Animal> allByTrainer() {}
+  public static List<Sighting> all() {
+    List<Sighting> sightings = new ArrayList<Sighting>();
+    return sightings;
+  }
+
+
 
   // getters and setters for each property
 

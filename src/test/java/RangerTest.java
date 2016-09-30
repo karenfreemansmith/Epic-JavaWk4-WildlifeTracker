@@ -1,7 +1,7 @@
 import org.junit.*;
 import static org.junit.Assert.*;
 
-public class RangerTest {}
+public class RangerTest {
   private Ranger ranger1;
   private Ranger ranger2;
 
@@ -13,3 +13,4 @@ public class RangerTest {}
     ranger1 = new Ranger();
     ranger2 = new Ranger();
   }
+}

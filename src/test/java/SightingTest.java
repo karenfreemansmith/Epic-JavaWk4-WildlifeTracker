@@ -1,7 +1,7 @@
 import org.junit.*;
 import static org.junit.Assert.*;
 
-public class SightingTest {}
+public class SightingTest {
   private Sighting sighting1;
   private Sighting sighting2;
 
@@ -13,3 +13,4 @@ public class SightingTest {}
     sighting1 = new Sighting();
     sighting2 = new Sighting();
   }
+}

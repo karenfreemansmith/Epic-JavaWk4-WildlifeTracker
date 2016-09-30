@@ -1,7 +1,7 @@
 import org.junit.*;
 import static org.junit.Assert.*;
 
-public class LocationTest {}
+public class LocationTest {
   private Location location1;
   private Location location2;
 
@@ -13,3 +13,4 @@ public class LocationTest {}
     location1 = new Location();
     location2 = new Location();
   }
+}

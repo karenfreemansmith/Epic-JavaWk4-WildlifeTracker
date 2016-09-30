@@ -1,7 +1,7 @@
 import org.junit.*;
 import static org.junit.Assert.*;
 
-public class EndangeredTest {}
+public class EndangeredTest {
   private Endangered endangered1;
   private Endangered endangered2;
 
@@ -13,3 +13,4 @@ public class EndangeredTest {}
     endangered1 = new Endangered();
     endangered2 = new Endangered();
   }
+}
