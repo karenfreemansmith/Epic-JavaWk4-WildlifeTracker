@@ -17,12 +17,12 @@ public class Ranger extends Person {
     this.email = email;
     this.badge = badge;
     this.workcontact = contact;
+    this.save();
   }
 
-  @Override
   public void save() {
     try(Connection cn = DB.sql2o.open()) {
-      String sql = "INSERT INTO people (firstname, lastname, phonenumber, address, city, state, zip, email) VALUES (:firstname, :lastname, :phonenumber, :address, :city, :state, :zip, :email)";
+      String sql = "INSERT INTO people (firstname, lastname, phonenumber, address, city, state, zip, email, badge, workcontact) VALUES (:firstname, :lastname, :phonenumber, :address, :city, :state, :zip, :email, :badge, :workcontact)";
       this.id = (int) cn.createQuery(sql, true)
         .addParameter("lastname", this.lastname)
         .addParameter("firstname", this.firstname)
@@ -32,6 +32,9 @@ public class Ranger extends Person {
         .addParameter("state", this.state)
         .addParameter("zip", this.zip)
         .addParameter("email", this.email)
+        .addParameter("badge", this.badge)
+        .addParameter("workcontact", this.workcontact)
+        .throwOnMappingFailure(false)
         .executeUpdate()
         .getKey();
     }
@@ -39,11 +42,28 @@ public class Ranger extends Person {
 
   public static Ranger find(int id) {
     try(Connection cn = DB.sql2o.open()) {
-      String sql = "SELECT * FROM rangers JOIN people ON rangers.personId=people.id WHERE people.id=:id";
+      String sql = "SELECT * FROM people WHERE id=:id";
       Ranger ranger = cn.createQuery(sql)
         .addParameter("id", id)
+        .throwOnMappingFailure(false)
         .executeAndFetchFirst(Ranger.class);
       return ranger;
     }
   }
+
+  // public String getNotes() {
+  //   return notes;
+  // }
+  //
+  // public void setNotes(String notes) {
+  //   this.notes=notes;
+  //   try(Connection cn = DB.sql2o.open()) {
+  //     String sql = "UPDATE clients SET notes = :notes WHERE id = :id";
+  //     cn.createQuery(sql)
+  //       .addParameter("notes", notes)
+  //       .addParameter("id", id)
+  //       .executeUpdate();
+  //   }
+  // }
+
 }

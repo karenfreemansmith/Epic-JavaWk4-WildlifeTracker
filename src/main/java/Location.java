@@ -22,16 +22,30 @@ public class Location  implements DatabaseManagement {
         .addParameter("description", this.description)
         .addParameter("maprow", this.maprow)
         .addParameter("mapcol", this.mapcol)
+        .throwOnMappingFailure(false)
         .executeUpdate()
         .getKey();
     }
   }
 
-  public void delete() {}
+  @Override
+  public void delete() {
+    try(Connection cn = DB.sql2o.open()) {
+      String sql = "DELETE FROM locations WHERE id = :id;";
+      cn.createQuery(sql)
+      .addParameter("id", this.id)
+      .executeUpdate();
+    }
+  }
 
   @Override
-  public boolean equals(Object otherObject) {
-    return false;
+  public boolean equals(Object otherLocation) {
+    if(!(otherLocation instanceof Location)) {
+      return false;
+    } else {
+      Location newLocation = (Location) otherLocation;
+      return this.getId()==newLocation.getId();
+    }
   }
 
   public static Location find(int id) {
@@ -39,6 +53,7 @@ public class Location  implements DatabaseManagement {
       String sql = "SELECT * FROM locations WHERE id=:id";
       Location location = cn.createQuery(sql)
         .addParameter("id", id)
+        .throwOnMappingFailure(false)
         .executeAndFetchFirst(Location.class);
       return location;
     }
@@ -54,5 +69,23 @@ public class Location  implements DatabaseManagement {
   }
 
   // getters and setters for each property
+  public int getId() {
+    return this.id;
+  }
+
+  // public String getNotes() {
+  //   return notes;
+  // }
+  //
+  // public void setNotes(String notes) {
+  //   this.notes=notes;
+  //   try(Connection cn = DB.sql2o.open()) {
+  //     String sql = "UPDATE clients SET notes = :notes WHERE id = :id";
+  //     cn.createQuery(sql)
+  //       .addParameter("notes", notes)
+  //       .addParameter("id", id)
+  //       .executeUpdate();
+  //   }
+  // }
 
 }

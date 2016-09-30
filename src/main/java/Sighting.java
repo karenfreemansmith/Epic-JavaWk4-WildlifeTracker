@@ -14,20 +14,31 @@ public class Sighting  implements DatabaseManagement {
     this.personId = personId;
     this.animalId = animalId;
     this.locationId = locationId;
+    //this.save();
   }
 
   public void save() {
     try(Connection cn = DB.sql2o.open()) {
-      String sql = "INSERT INTO sightings (personId, animalId, locationId, time) VALUES personID, :animalId, :locationId, now())";
+      String sql = "INSERT INTO sightings (animalid, personid, locationid, time) VALUES (:animalId, :personID, :locationId, now())";
       this.id = (int) cn.createQuery(sql, true)
-        .addParameter("personId", this.personId)
-        .addParameter("animalId", this.animalId)
-        .addParameter("locationId", this.locationId)
+        .addParameter("animalid", this.animalId)
+        .addParameter("personid", this.personId)
+        .addParameter("locationid", this.locationId)
         .executeUpdate()
         .getKey();
     }
   }
+
+  @Override
   public void delete() {}
+    public static void delete(int id) {
+      try(Connection cn = DB.sql2o.open()) {
+        String sql = "DELETE FROM sightings WHERE id = :id;";
+        cn.createQuery(sql)
+        .addParameter("id", id)
+        .executeUpdate();
+      }
+    }
 
   @Override
   public boolean equals(Object otherObject) {
@@ -52,5 +63,22 @@ public class Sighting  implements DatabaseManagement {
 
 
   // getters and setters for each property
+  public int getId() {
+    return this.id;
+  }
 
+  // public String getNotes() {
+  //   return notes;
+  // }
+  //
+  // public void setNotes(String notes) {
+  //   this.notes=notes;
+  //   try(Connection cn = DB.sql2o.open()) {
+  //     String sql = "UPDATE clients SET notes = :notes WHERE id = :id";
+  //     cn.createQuery(sql)
+  //       .addParameter("notes", notes)
+  //       .addParameter("id", id)
+  //       .executeUpdate();
+  //   }
+  // }
 }

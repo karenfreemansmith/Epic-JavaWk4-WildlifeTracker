@@ -18,10 +18,6 @@ public class DBRule extends ExternalResource {
       cn.createQuery(sql).executeUpdate();
       sql = "DELETE FROM people *;";
       cn.createQuery(sql).executeUpdate();
-      sql = "DELETE FROM rangers *;";
-      cn.createQuery(sql).executeUpdate();
-      sql = "DELETE FROM trainers *;";
-      cn.createQuery(sql).executeUpdate();
     }
   }
 

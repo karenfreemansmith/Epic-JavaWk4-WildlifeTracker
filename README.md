@@ -63,11 +63,9 @@ Final Project for Week 4, Java at Epicodus. A program to track wildlife sighting
   * CREATE DATABASE wildlife_tracker;
   * \c wildlife_tracker
   * CREATE TABLE animals (id serial PRIMARY KEY, animalName varchar, photo varchar, type int, age int, health int, cp int);
-  * CREATE TABLE sightings (id serial PRIMARY KEY, animalId int, personId int, locationId int);
-  * CREATE TABLE people (id serial PRIMARY KEY, firstname varchar, lastname varchar, phonenumber varchar, address varchar, city varchar, state varchar, zip int, email varchar);
-  * CREATE TABLE rangers (id serial PRIMARY KEY, personId int, badge int, workcontact varchar);
-  * CREATE TABLE trainers (id serial PRIMARY KEY, personId int, trainerName varchar, level int);
-  * CREATE TABLE locations (id serial PRIMARY KEY, description varchar, maprow int, mapcol int, time timestamp);
+  * CREATE TABLE sightings (id serial PRIMARY KEY, animalId int, personId int, locationId int, time timestamp);
+  * CREATE TABLE people (id serial PRIMARY KEY, firstname varchar, lastname varchar, phonenumber varchar, address varchar, city varchar, state varchar, zip varchar, email varchar, badge int, workcontact varchar, trainerName varchar, level int);
+  * CREATE TABLE locations (id serial PRIMARY KEY, description varchar, maprow int, mapcol int);
   * CREATE DATABASE wildlife_tracker_test WITH TEMPLATE wildlife_tracker;
 * OR ... restore database from backup by running
   * CREATE DATABASE wildlife_tracker;

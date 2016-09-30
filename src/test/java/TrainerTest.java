@@ -18,4 +18,32 @@ public class TrainerTest {
   public void Trainer_instantiatesCorrectly_true() {
     assertTrue(trainer1 instanceof Trainer);
   }
+
+  @Test
+  public void save_returnsIdFromDatabase_true() {
+    assertTrue(trainer1.getId()>0);
+  }
+
+  @Test
+  public void delete_deletesTrainer_true() {
+    int trainerId = trainer2.getId();
+    trainer2.delete();
+    assertEquals(null, Trainer.find(trainerId));
+  }
+
+  @Test
+  public void find_returnCorrectTrainer_true() {
+    assertTrue(Trainer.find(trainer1.getId()).equals(trainer1));
+  }
+
+  // @Test
+  // public void getNotes_returnsCorrectNotes_String() {
+  //   assertEquals("allergies", client.getNotes());
+  // }
+  //
+  // @Test
+  // public void setNotes_updatesNotes_String() {
+  //   client2.setNotes("allergies");
+  //   assertEquals("allergies", Client.find(client2.getId()).getNotes());
+  // }
 }

@@ -18,4 +18,32 @@ public class PokemonTest {
   public void Pokemon_instantiatesCorrectly_true() {
     assertTrue(pokemon1 instanceof Pokemon);
   }
+
+  @Test
+  public void save_returnsIdFromDatabase_true() {
+    assertTrue(pokemon1.getId()>0);
+  }
+
+  @Test
+  public void delete_deletesPokemon_true() {
+    int pokemonId = pokemon2.getId();
+    pokemon2.delete();
+    assertEquals(null, Pokemon.find(pokemonId));
+  }
+
+  @Test
+  public void find_returnCorrectPokemon_true() {
+    assertTrue(Pokemon.find(pokemon1.getId()).equals(pokemon1));
+  }
+
+  // @Test
+  // public void getNotes_returnsCorrectNotes_String() {
+  //   assertEquals("allergies", client.getNotes());
+  // }
+  //
+  // @Test
+  // public void setNotes_updatesNotes_String() {
+  //   client2.setNotes("allergies");
+  //   assertEquals("allergies", Client.find(client2.getId()).getNotes());
+  // }
 }

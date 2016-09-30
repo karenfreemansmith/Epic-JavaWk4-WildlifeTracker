@@ -18,4 +18,32 @@ public class VisitorTest {
   public void visitor_instantiatesCorrectly_true() {
     assertTrue(visitor1 instanceof Visitor);
   }
+
+  @Test
+  public void save_returnsIdFromDatabase_true() {
+    assertTrue(visitor1.getId()>0);
+  }
+
+  @Test
+  public void delete_deletesVistitor_true() {
+    int visitorId = visitor2.getId();
+    visitor2.delete();
+    assertEquals(null, Visitor.find(visitorId));
+  }
+
+  @Test
+  public void find_returnCorrectVisitor_true() {
+    assertTrue(Visitor.find(visitor1.getId()).equals(visitor1));
+  }
+
+  // @Test
+  // public void getNotes_returnsCorrectNotes_String() {
+  //   assertEquals("allergies", client.getNotes());
+  // }
+  //
+  // @Test
+  // public void setNotes_updatesNotes_String() {
+  //   client2.setNotes("allergies");
+  //   assertEquals("allergies", Client.find(client2.getId()).getNotes());
+  // }
 }

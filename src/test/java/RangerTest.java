@@ -18,4 +18,32 @@ public class RangerTest {
   public void Range_instantiatesCorrectly_true() {
     assertTrue(ranger1 instanceof Ranger);
   }
+
+  @Test
+  public void save_returnsIdFromDatabase_true() {
+    assertTrue(ranger1.getId()>0);
+  }
+
+  @Test
+  public void delete_deletesRanger_true() {
+    int rangerId = ranger2.getId();
+    ranger2.delete();
+    assertEquals(null, Ranger.find(rangerId));
+  }
+
+  @Test
+  public void find_returnCorrectRanger_true() {
+    assertTrue(Ranger.find(ranger1.getId()).equals(ranger1));
+  }
+
+  // @Test
+  // public void getNotes_returnsCorrectNotes_String() {
+  //   assertEquals("allergies", client.getNotes());
+  // }
+  //
+  // @Test
+  // public void setNotes_updatesNotes_String() {
+  //   client2.setNotes("allergies");
+  //   assertEquals("allergies", Client.find(client2.getId()).getNotes());
+  // }
 }
