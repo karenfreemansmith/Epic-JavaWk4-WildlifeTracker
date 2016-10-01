@@ -60,15 +60,23 @@ public class Location  implements DatabaseManagement {
   }
 
   public static List<Location> all() {
-    List<Location> locations = new ArrayList<Location>();
-    return locations;
-  }
-  public static List<Sighting> allByLocation() {
-    List<Sighting> sightings = new ArrayList<Sighting>();
-    return sightings;
+    String sql = "SELECT * FROM locations ORDER BY description";
+    try(Connection cn = DB.sql2o.open()) {
+      return cn.createQuery(sql)
+      .throwOnMappingFailure(false)
+      .executeAndFetch(Location.class);
+    }
   }
 
-  // getters and setters for each property
+  public List<Sighting> allByLocation() {
+    String sql = "SELECT * FROM sightings WHERE locationid = :id ORDER BY time";
+    try(Connection cn = DB.sql2o.open()) {
+      return cn.createQuery(sql)
+      .addParameter("id", this.id)
+      .executeAndFetch(Sighting.class);
+    }
+  }
+
   public int getId() {
     return this.id;
   }

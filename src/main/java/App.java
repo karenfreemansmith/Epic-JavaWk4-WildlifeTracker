@@ -35,5 +35,43 @@ public class App {
       model.put("template", "templates/sightings.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    get("/admin", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("animals", Animal.all());
+      model.put("locations", Location.all());
+      model.put("rangers", Ranger.all());
+      model.put("template", "templates/admin.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/admin/addAnimal", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Animal animal = new Animal(request.queryParams("animal"), request.queryParams("photo"), Integer.parseInt(request.queryParams("type")));
+      model.put("newAnimal", animal);
+      model.put("animals", Animal.all());
+      model.put("locations", Location.all());
+      model.put("rangers", Ranger.all());
+      model.put("template", "templates/admin.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/admin/addLocation", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("animals", Animal.all());
+      model.put("locations", Location.all());
+      model.put("rangers", Ranger.all());
+      model.put("template", "templates/admin.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/admin/addRanger", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("animals", Animal.all());
+      model.put("locations", Location.all());
+      model.put("rangers", Ranger.all());
+      model.put("template", "templates/admin.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
   }
 }

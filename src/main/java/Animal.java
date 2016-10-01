@@ -59,17 +59,24 @@ public class Animal implements DatabaseManagement {
     }
   }
 
-  public static List<Animal> all() {
-    List<Animal> animals = new ArrayList<Animal>();
-    return animals;
-  }
   public List<Sighting> allByAnimal() {
-    List<Sighting> sightings = new ArrayList<Sighting>();
-    return sightings;
+    String sql = "SELECT * FROM sightings WHERE animalid = :id ORDER BY time";
+    try(Connection cn = DB.sql2o.open()) {
+      return cn.createQuery(sql)
+      .addParameter("id", this.id)
+      .executeAndFetch(Sighting.class);
+    }
   }
 
+  public static List<Animal> all() {
+    String sql = "SELECT * FROM animals ORDER BY animalname";
+    try(Connection cn = DB.sql2o.open()) {
+      return cn.createQuery(sql)
+      .throwOnMappingFailure(false)
+      .executeAndFetch(Animal.class);
+    }
+  }
 
-  // getters and setters for each property
   public int getId() {
     return this.id;
   }

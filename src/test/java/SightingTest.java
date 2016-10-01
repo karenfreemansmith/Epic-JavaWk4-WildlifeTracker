@@ -19,11 +19,11 @@ public class SightingTest {
     assertTrue(sighting1 instanceof Sighting);
   }
 
-  // @Test
-  // public void save_returnsIdFromDatabase_true() {
-  //   assertTrue(sighting1.getId()>0);
-  // }
-  //
+  @Test
+  public void save_returnsIdFromDatabase_true() {
+    assertEquals(1, sighting1.getId());
+  }
+
   // @Test
   // public void delete_deletesASighting_true() {
   //   int sightingId = sighting2.getId();
@@ -36,11 +36,33 @@ public class SightingTest {
   //   assertTrue(Sighting.find(sighting1.getId()).equals(sighting1));
   // }
 
+  @Test
+  public void getAnimal_returnsCorrectAnimal_1() {
+    assertEquals(2, sighting1.getAnimal());
+  }
+
   // @Test
-  // public void getNotes_returnsCorrectNotes_String() {
-  //   assertEquals("allergies", client.getNotes());
+  // public void setNotes_updatesNotes_String() {
+  //   client2.setNotes("allergies");
+  //   assertEquals("allergies", Client.find(client2.getId()).getNotes());
   // }
-  //
+
+  @Test
+  public void getLocation_returnsCorrectLocation_2() {
+    assertEquals(2, sighting1.getLocation());
+  }
+
+  // @Test
+  // public void setNotes_updatesNotes_String() {
+  //   client2.setNotes("allergies");
+  //   assertEquals("allergies", Client.find(client2.getId()).getNotes());
+  // }
+
+  @Test
+  public void getPerson_returnsCorrectPerson_2() {
+    assertEquals(1, sighting1.getPerson());
+  }
+
   // @Test
   // public void setNotes_updatesNotes_String() {
   //   client2.setNotes("allergies");

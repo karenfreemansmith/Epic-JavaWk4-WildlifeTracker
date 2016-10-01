@@ -31,6 +31,16 @@ public class LocationTest {
     assertEquals(null, Location.find(locationId));
   }
 
+  // @Test
+  // public void allByLocation_returnsAllSightingsForLocation_true() {
+  //   assertTrue(location1.allByLocation().size()>1);
+  // }
+
+  @Test
+  public void all_returnsAllInstances_true() {
+    assertTrue(Location.all().size()>1);
+  }
+
   @Test
   public void find_returnCorrectLocation_true() {
     assertTrue(Location.find(location1.getId()).equals(location1));

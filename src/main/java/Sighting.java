@@ -1,10 +1,8 @@
 import org.sql2o.*;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Date;
-import java.sql.Timestamp;
 
-public class Sighting  implements DatabaseManagement {
+public class Sighting implements DatabaseManagement {
   private int id;
   private int personId;
   private int animalId;
@@ -19,11 +17,12 @@ public class Sighting  implements DatabaseManagement {
 
   public void save() {
     try(Connection cn = DB.sql2o.open()) {
-      String sql = "INSERT INTO sightings (animalid, personid, locationid, time) VALUES (:animalId, :personID, :locationId, now())";
+      String sql = "INSERT INTO sightings (animalId, locationId, personId) VALUES (:animalId, :locationId, :personId)";
       this.id = (int) cn.createQuery(sql, true)
-        .addParameter("animalid", this.animalId)
-        .addParameter("personid", this.personId)
-        .addParameter("locationid", this.locationId)
+        .addParameter("animalId", this.animalId)
+        .addParameter("locationId", this.locationId)
+        .addParameter("personId", this.personId)
+        .throwOnMappingFailure(false)
         .executeUpdate()
         .getKey();
     }
@@ -67,9 +66,9 @@ public class Sighting  implements DatabaseManagement {
     return this.id;
   }
 
-  // public String getNotes() {
-  //   return notes;
-  // }
+  public int getAnimal() {
+    return this.animalId;
+  }
   //
   // public void setNotes(String notes) {
   //   this.notes=notes;
@@ -82,9 +81,9 @@ public class Sighting  implements DatabaseManagement {
   //   }
   // }
   //
-  // public String getName() {
-  //   return name;
-  // }
+  public int getLocation() {
+    return this.locationId;
+  }
   //
   // public void setName(String name) {
   //   this.name=name;
@@ -112,9 +111,9 @@ public class Sighting  implements DatabaseManagement {
   //   }
   // }
   //
-  // public String getType() {
-  //   return type;
-  // }
+  public int getPerson() {
+    return this.personId;
+  }
   //
   // public void setType(String type) {
   //   this.type=type;

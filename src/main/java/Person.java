@@ -34,9 +34,14 @@ public abstract class Person  implements DatabaseManagement {
   }
 
   public static List<Person> all() {
-    List<Person> people = new ArrayList<Person>();
-    return people;
+    String sql = "SELECT * FROM people ORDER BY lastname, firstname";
+    try(Connection cn = DB.sql2o.open()) {
+      return cn.createQuery(sql)
+      .throwOnMappingFailure(false)
+      .executeAndFetch(Person.class);
+    }
   }
+
 
   public static List<Sighting> allByPerson(int id) {
     List<Sighting> sightings = new ArrayList<Sighting>();
