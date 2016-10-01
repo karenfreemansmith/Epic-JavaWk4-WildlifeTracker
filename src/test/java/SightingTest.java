@@ -21,7 +21,7 @@ public class SightingTest {
 
   @Test
   public void save_returnsIdFromDatabase_true() {
-    assertEquals(1, sighting1.getId());
+    assertTrue(sighting1.getId()>0);
   }
 
   // @Test

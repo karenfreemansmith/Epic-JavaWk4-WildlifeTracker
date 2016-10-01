@@ -12,7 +12,7 @@ public class Sighting implements DatabaseManagement {
     this.personId = personId;
     this.animalId = animalId;
     this.locationId = locationId;
-    //this.save();
+    this.save();
   }
 
   public void save() {
