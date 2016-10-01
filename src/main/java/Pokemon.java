@@ -1,11 +1,11 @@
 import org.sql2o.*;
 import java.util.List;
 
-public class Pokemon extends Animal {
+public class Pokemon extends Sighting {
   private int cp;
 
-  public Pokemon(String name, String photo, int type, int cp) {
-    super(name, photo, type);
+  public Pokemon(int personId, int animalId, int locationId, int cp) {
+    super(personId, animalId, locationId);
     this.cp = cp;
   }
 

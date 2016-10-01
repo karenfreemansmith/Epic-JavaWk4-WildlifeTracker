@@ -24,17 +24,17 @@ public class SightingTest {
     assertTrue(sighting1.getId()>0);
   }
 
-  // @Test
-  // public void delete_deletesASighting_true() {
-  //   int sightingId = sighting2.getId();
-  //   sighting2.delete();
-  //   assertEquals(null, Sighting.find(sightingId));
-  // }
-  //
-  // @Test
-  // public void find_returnCorrectSighting_true() {
-  //   assertTrue(Sighting.find(sighting1.getId()).equals(sighting1));
-  // }
+  @Test
+  public void delete_deletesASighting_true() {
+    int sightingId = sighting2.getId();
+    sighting2.delete();
+    assertEquals(null, Sighting.find(sightingId));
+  }
+
+  @Test
+  public void find_returnCorrectSighting_true() {
+    assertTrue(Sighting.find(sighting1.getId()).equals(sighting1));
+  }
 
   @Test
   public void getAnimal_returnsCorrectAnimal_1() {

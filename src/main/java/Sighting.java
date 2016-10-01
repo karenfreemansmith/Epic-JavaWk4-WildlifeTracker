@@ -3,10 +3,10 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Sighting implements DatabaseManagement {
-  private int id;
-  private int personId;
-  private int animalId;
-  private int locationId;
+  protected int id;
+  protected int personId;
+  protected int animalId;
+  protected int locationId;
 
   public Sighting(int personId, int animalId, int locationId) {
     this.personId = personId;
