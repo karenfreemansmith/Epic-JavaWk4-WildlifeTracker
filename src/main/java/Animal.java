@@ -69,7 +69,12 @@ public class Animal implements DatabaseManagement {
   }
 
   public static List<Animal> all() {
-    String sql = "SELECT * FROM animals ORDER BY animalname";
+    String sql;
+    // check to see if table is empty and run load routines if it is
+    // loadAnimals();
+    // loadEndangered();
+    // loadPokemon();
+    sql = "SELECT * FROM animals ORDER BY animalname";
     try(Connection cn = DB.sql2o.open()) {
       return cn.createQuery(sql)
       .throwOnMappingFailure(false)
