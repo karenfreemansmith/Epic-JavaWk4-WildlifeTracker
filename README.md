@@ -79,7 +79,11 @@ Final Project for Week 4, Java at Epicodus. A program to track wildlife sighting
 For questions, concerns, or suggestions please email karenfreemansmith@gmail.com
 
 ## Known Issues
-* N/A
+* Sightings object refuses to even TRY to insert a new sighting
+* Loading admin page throws an error about instantiating Person after first ranger is submited (ranger does end up int the database though)
+* Missing some tests for "all()" functions
+* Front-end UI not finished
+
 
 ## Technologies Used
 Java, JUnit, Spark, PostgreSQL, Gradle

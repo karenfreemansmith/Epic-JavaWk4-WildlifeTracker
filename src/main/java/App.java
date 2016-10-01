@@ -58,9 +58,7 @@ public class App {
 
     post("/admin/addLocation", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      Location location = new Location(request.queryParams("description"),
-                Integer.parseInt(request.queryParams("mapcol")),
-                Integer.parseInt(request.queryParams("maprow")));
+      Location location = new Location(request.queryParams("description"),Integer.parseInt(request.queryParams("mapcol")),Integer.parseInt(request.queryParams("maprow")));
       model.put("newLocation", location);
       model.put("animals", Animal.all());
       model.put("locations", Location.all());
@@ -71,10 +69,7 @@ public class App {
 
     post("/admin/addRanger", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      Ranger ranger = new Ranger(request.queryParams("first"), request.queryParams("last"),
-            request.queryParams("phone"),request.queryParams("address"),
-            request.queryParams("city"), request.queryParams("state"),request.queryParams("zip"),
-            request.queryParams("email"), Integer.parseInt(request.queryParams("badge")), request.queryParams("contact"));
+      Ranger ranger = new Ranger(request.queryParams("first"), request.queryParams("last"),request.queryParams("phone"),request.queryParams("address"),request.queryParams("city"), request.queryParams("state"),request.queryParams("zip"),request.queryParams("email"),Integer.parseInt(request.queryParams("badge")), request.queryParams("contact"));
       model.put("newRanger", ranger);
       model.put("animals", Animal.all());
       model.put("locations", Location.all());
