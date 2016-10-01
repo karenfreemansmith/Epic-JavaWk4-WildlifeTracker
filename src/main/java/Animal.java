@@ -133,7 +133,17 @@ public class Animal implements DatabaseManagement {
   public static void loadAnimals() {
     Animal newAnimal;
     newAnimal = new Animal("Opossum (Didelphis virginiana)", "006_opossum_nwwd_odfw.jpg", 1);
-
+    newAnimal = new Animal("Mountain Beaver (Aplodontia rufa)", "mountain_beaver.jpg", 1);
+    newAnimal = new Animal("American Beaver (Castor canadensis)", "beaver.jpg", 1);
+    newAnimal = new Animal("Common Porcupine (Erethizon dorsatum)", "porcupine.jpg", 1);
+    newAnimal = new Animal("Nutria (Myocastor Coypus)", "Nutria.jpg", 1);
+    newAnimal = new Animal("Black Bear (Ursus americanus)", "black_bear_walking_odfw.jpg", 1);
+    newAnimal = new Animal("Cougar (Puma concolor)", "cougar.jpg", 1);
+    newAnimal = new Animal("Bobcat (Lynx rufus)", "bobcat_odfw.jpg", 1);
+    newAnimal = new Animal("Coyote (Canis latrans)", "coyote_yip.jpg", 1);
+    newAnimal = new Animal("Common Gray Fox (Urocyon cinereoargenteus)", "greyfox_odfw.jpg", 1);
+    newAnimal = new Animal("Kit Fox (Vulpes velox)", "kit_fox_wikipedia.jpg", 1);
+    newAnimal = new Animal("Red Fox (Vulpes vulpes)", "red_fox_odfw.jpg", 1);
   }
 
   public static void loadEndangered() {
