@@ -57,35 +57,43 @@
     <form action='/admin/addRanger' method="post">
       <div class="form-group col-xs-6">
         <label for="first">First name: </label>
-        <input id="first" name="first" class="form-control" type="text" value="$client.getFirstName()">
+        <input id="first" name="first" class="form-control" type="text">
       </div>
       <div class="form-group col-xs-6">
         <label for="last">Last Name: </label>
-        <input id="last" name="last" class="form-control" type="text" value="$client.getLastName()">
+        <input id="last" name="last" class="form-control" type="text">
       </div>
       <div class="form-group col-xs-6">
         <label for="phone">Phone Number: </label>
-        <input id="phone" name="phone" class="form-control" type="text" value="$client.getPhoneNumber()">
+        <input id="phone" name="phone" class="form-control" type="text">
       </div>
       <div class="form-group col-xs-6">
         <label for="address">Street Address: </label>
-        <input id="address" name="address" class="form-control" type="text" value="$client.getAddress()">
+        <input id="address" name="address" class="form-control" type="text">
       </div>
       <div class="form-group col-xs-6">
         <label for="city">City: </label>
-        <input id="city" name="city" class="form-control" type="text" value="$client.getCity()">
+        <input id="city" name="city" class="form-control" type="text">
       </div>
       <div class="form-group col-xs-3">
         <label for="state">State: </label>
-        <input id="state" name="state" class="form-control" type="text" value="$client.getState()">
+        <input id="state" name="state" class="form-control" type="text">
       </div>
       <div class="form-group col-xs-3">
         <label for="zip">Zip: </label>
-        <input id="zip" name="zip" class="form-control" type="text" value="$client.getZip()">
+        <input id="zip" name="zip" class="form-control" type="text">
       </div>
       <div class="form-group col-xs-9">
         <label for="email">Email: </label>
-        <input id="email" name="email" class="form-control" type="text" value="$client.getEmail()">
+        <input id="email" name="email" class="form-control" type="text">
+      </div>
+      <div class="form-group col-xs-6">
+        <label for="badge">Badge Number: </label>
+        <input id="badge" name="badge" class="form-control" type="number">
+      </div>
+      <div class="form-group col-xs-6">
+        <label for="contact">Work Contact: </label>
+        <input id="contact" name="contact" class="form-control" type="text">
       </div>
       <button type='submit' class='btn btn-default form-control'>Add Ranger</button>
     </form>
