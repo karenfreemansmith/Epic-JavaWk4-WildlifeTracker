@@ -22,19 +22,91 @@ public class App {
 
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      //model.put("sightings", Sighting.all());
+      model.put("rangers", Ranger.all());
+      model.put("template", "templates/index.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/location/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("sightings", Sighting.allByLocation(Integer.parseInt(request.params(":id"))));
       model.put("template", "templates/sightings.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    post("/", (request, response) -> {
+    get("/endangered", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      //Sighting sighting = new Sighting(request.queryParams("animal"), request.queryParams("location"));
-      //model.put("sighting", sighting);
-      //model.put("sightings", Sighting.all());
+      model.put("rangers", Ranger.all());
+      model.put("sightings", Sighting.all());
       model.put("template", "templates/sightings.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    get("/endangered/id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("sightings", Sighting.allEndangered());
+      model.put("template", "templates/endangered.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/endangered", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Sighting sighting = new Sighting(Integer.parseInt(request.queryParams("person")), Integer.parseInt(request.queryParams("animal")), Integer.parseInt(request.queryParams("location")));
+      model.put("sighting", sighting);
+      model.put("sightings", Sighting.allEndangered());
+      model.put("template", "templates/sightings.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/animals", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("visitors", Visitor.all());
+      model.put("sightings", Sighting.all());
+      model.put("template", "templates/sightings.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/animals/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("sightings", Sighting.allAnimals());
+      model.put("template", "templates/animal.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/animals", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Sighting sighting = new Sighting(Integer.parseInt(request.queryParams("person")), Integer.parseInt(request.queryParams("animal")), Integer.parseInt(request.queryParams("location")));
+      model.put("sighting", sighting);
+      model.put("sightings", Sighting.allAnimals());
+      model.put("template", "templates/sightings.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+
+    get("/pokemon", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("trainers", Trainer.all());
+      model.put("sightings", Sighting.all());
+      model.put("template", "templates/sightings.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/pokemon/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("sightings", Sighting.allPokemon());
+      model.put("template", "templates/pokemon.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/pokemon", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Sighting sighting = new Sighting(Integer.parseInt(request.queryParams("person")), Integer.parseInt(request.queryParams("animal")), Integer.parseInt(request.queryParams("location")));
+      model.put("sighting", sighting);
+      model.put("sightings", Sighting.allPokemon());
+      model.put("template", "templates/sightings.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
 
     get("/admin", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();

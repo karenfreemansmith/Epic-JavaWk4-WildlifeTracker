@@ -1,12 +1,14 @@
 import org.sql2o.*;
 import java.util.List;
 import java.util.ArrayList;
+import java.sql.Timestamp;
 
 public class Sighting implements DatabaseManagement {
   protected int id;
   protected int personId;
   protected int animalId;
   protected int locationId;
+  protected Timestamp time;
 
   public Sighting(int personId, int animalId, int locationId) {
     this.personId = personId;
@@ -55,10 +57,72 @@ public class Sighting implements DatabaseManagement {
   }
 
   public static List<Sighting> all() {
-    List<Sighting> sightings = new ArrayList<Sighting>();
-    return sightings;
+    String sql = "SELECT * FROM sightings ORDER BY time";
+    try(Connection cn = DB.sql2o.open()) {
+      return cn.createQuery(sql)
+      .throwOnMappingFailure(false)
+      .executeAndFetch(Sighting.class);
+    }
   }
 
+  public static List<Sighting> allByLocation(int id) {
+    String sql = "SELECT * FROM sightings WHERE locationid = :id ORDER BY time";
+    try(Connection cn = DB.sql2o.open()) {
+      return cn.createQuery(sql)
+      .addParameter("id", id)
+      .throwOnMappingFailure(false)
+      .executeAndFetch(Sighting.class);
+    }
+  }
+
+  public static List<Sighting> allByAnimal(int id) {
+    String sql = "SELECT * FROM sightings WHERE animalid = :id ORDER BY time";
+    try(Connection cn = DB.sql2o.open()) {
+      return cn.createQuery(sql)
+      .addParameter("id", id)
+      .throwOnMappingFailure(false)
+      .executeAndFetch(Sighting.class);
+    }
+  }
+
+  public static List<Sighting> allByPerson(int id) {
+    String sql = "SELECT * FROM sightings WHERE personid = :id ORDER BY time";
+    try(Connection cn = DB.sql2o.open()) {
+      return cn.createQuery(sql)
+      .addParameter("id", id)
+      .throwOnMappingFailure(false)
+      .executeAndFetch(Sighting.class);
+    }
+  }
+
+  public static List<Sighting> allAnimals() {
+    String sql = "SELECT * FROM sightings JOIN animals ON animalid = animals.id WHRE animal.type = 1 ORDER BY time";
+    try(Connection cn = DB.sql2o.open()) {
+      return cn.createQuery(sql)
+      .throwOnMappingFailure(false)
+      .executeAndFetch(Sighting.class);
+    }
+  }
+
+
+  public static List<Sighting> allPokemon() {
+    String sql = "SELECT * FROM sightings JOIN animals ON animalid = animals.id WHRE animal.type = 3 ORDER BY time";
+    try(Connection cn = DB.sql2o.open()) {
+      return cn.createQuery(sql)
+      .throwOnMappingFailure(false)
+      .executeAndFetch(Sighting.class);
+    }
+  }
+
+
+  public static List<Sighting> allEndangered() {
+    String sql = "SELECT * FROM sightings JOIN animals ON animalid = animals.id WHRE animal.type = 2 ORDER BY time";
+    try(Connection cn = DB.sql2o.open()) {
+      return cn.createQuery(sql)
+      .throwOnMappingFailure(false)
+      .executeAndFetch(Sighting.class);
+    }
+  }
 
 
   // getters and setters for each property
