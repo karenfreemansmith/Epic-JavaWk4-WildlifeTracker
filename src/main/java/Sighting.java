@@ -2,6 +2,7 @@ import org.sql2o.*;
 import java.util.List;
 import java.util.ArrayList;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 public class Sighting implements DatabaseManagement {
   protected int id;
@@ -130,63 +131,33 @@ public class Sighting implements DatabaseManagement {
     return this.id;
   }
 
-  public int getAnimal() {
+  public String getTime() {
+    String strTime = new SimpleDateFormat("MMMMM dd, yyyy").format(time);
+    return strTime;
+  }
+
+  public int getAnimalId() {
     return this.animalId;
   }
-  //
-  // public void setNotes(String notes) {
-  //   this.notes=notes;
-  //   try(Connection cn = DB.sql2o.open()) {
-  //     String sql = "UPDATE clients SET notes = :notes WHERE id = :id";
-  //     cn.createQuery(sql)
-  //       .addParameter("notes", notes)
-  //       .addParameter("id", id)
-  //       .executeUpdate();
-  //   }
-  // }
-  //
-  public int getLocation() {
+
+  public String getAnimal() {
+    return Animal.find(animalId).getName();
+  }
+
+  public int getLocationId() {
     return this.locationId;
   }
-  //
-  // public void setName(String name) {
-  //   this.name=name;
-  //   try(Connection cn = DB.sql2o.open()) {
-  //     String sql = "UPDATE animals SET name = :name WHERE id = :id";
-  //     cn.createQuery(sql)
-  //       .addParameter("name", name)
-  //       .addParameter("id", id)
-  //       .executeUpdate();
-  //   }
-  // }
-  //
-  // public String getPhoto() {
-  //   return photo;
-  // }
-  //
-  // public void setPhoto(String photo) {
-  //   this.photo=photo;
-  //   try(Connection cn = DB.sql2o.open()) {
-  //     String sql = "UPDATE animals SET photo = :photo WHERE id = :id";
-  //     cn.createQuery(sql)
-  //       .addParameter("photo", photo)
-  //       .addParameter("id", id)
-  //       .executeUpdate();
-  //   }
-  // }
-  //
-  public int getPerson() {
+
+  public String getLocation() {
+    return Location.find(locationId).getDescription();
+  }
+
+  public int getPersonId() {
     return this.personId;
   }
-  //
-  // public void setType(String type) {
-  //   this.type=type;
-  //   try(Connection cn = DB.sql2o.open()) {
-  //     String sql = "UPDATE animals SET type = :type WHERE id = :id";
-  //     cn.createQuery(sql)
-  //       .addParameter("type", type)
-  //       .addParameter("id", id)
-  //       .executeUpdate();
-  //   }
-  // }
+
+  public String getRanger() {
+    return "Ranger " + Ranger.find(personId).getFirstName() + " " + Ranger.find(personId).getLastName();
+  }
+
 }
