@@ -22,7 +22,7 @@ public class Trainer extends Person {
 
   public void save() {
     try(Connection cn = DB.sql2o.open()) {
-      String sql = "INSERT INTO people (firstname, lastname, phonenumber, address, city, state, zip, email, trainername, level) VALUES (:firstname, :lastname, :phonenumber, :address, :city, :state, :zip, :email, :trainername, :level)";
+      String sql = "INSERT INTO people (firstname, lastname, phonenumber, address, city, state, zip, email, trainername, level, type) VALUES (:firstname, :lastname, :phonenumber, :address, :city, :state, :zip, :email, :trainername, :level, 3)";
       this.id = (int) cn.createQuery(sql, true)
         .addParameter("lastname", this.lastname)
         .addParameter("firstname", this.firstname)
@@ -38,6 +38,15 @@ public class Trainer extends Person {
         .executeUpdate()
         .getKey();
 
+    }
+  }
+
+  public static List<Trainer> all() {
+    String sql = "SELECT * FROM people WHERE type=3 ORDER BY lastname, firstname";
+    try(Connection cn = DB.sql2o.open()) {
+      return cn.createQuery(sql)
+      .throwOnMappingFailure(false)
+      .executeAndFetch(Trainer.class);
     }
   }
 

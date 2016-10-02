@@ -64,7 +64,7 @@ Final Project for Week 4, Java at Epicodus. A program to track wildlife sighting
   * \c wildlife_tracker
   * CREATE TABLE animals (id serial PRIMARY KEY, animalName varchar, photo varchar, type int);
   * CREATE TABLE sightings (id serial PRIMARY KEY, animalId int, personId int, locationId int, time timestamp, age int, health int, cp int);
-  * CREATE TABLE people (id serial PRIMARY KEY, firstname varchar, lastname varchar, phonenumber varchar, address varchar, city varchar, state varchar, zip varchar, email varchar, badge int, workcontact varchar, trainerName varchar, level int);
+  * CREATE TABLE people (id serial PRIMARY KEY, firstname varchar, lastname varchar, phonenumber varchar, address varchar, city varchar, state varchar, zip varchar, email varchar, badge int, workcontact varchar, trainerName varchar, level int, type int);
   * CREATE TABLE locations (id serial PRIMARY KEY, description varchar, maprow int, mapcol int);
   * CREATE DATABASE wildlife_tracker_test WITH TEMPLATE wildlife_tracker;
 * OR ... restore database from backup by running
@@ -80,8 +80,8 @@ For questions, concerns, or suggestions please email karenfreemansmith@gmail.com
 
 ## Known Issues
 * Sightings object refuses to even TRY to insert a new sighting
-* Loading admin page throws an error about instantiating Person after first ranger is submited (ranger does end up int the database though)
 * Missing some tests for "all()" functions
+* Admin page loads extremely slow...
 * Front-end UI not finished
 
 

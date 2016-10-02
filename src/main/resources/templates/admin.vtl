@@ -4,7 +4,15 @@
     <h2>Animals</h2>
     #if($animals)
       #foreach($animal in $animals)
-      <h3>$animal.getName()</h3>
+        #if($animal.getType()==1||$animal.getType()==2)
+          <h4>
+          #if($animal.getType()==2)
+            <a href="/endangered/$animal.getId()"><strong>$animal.getName()</strong></a>
+          #else
+            <a href="/animals/$animal.getId()">$animal.getName()</a>
+          #end
+          </h4>
+        #end
       #end
     #end
     <form action='/admin/addAnimal' method="post">
@@ -27,7 +35,7 @@
     <h2>Locations</h2>
     #if($locations)
       #foreach($location in $locations)
-      <h3>$location.getDescription()</h3>
+      <h4><a href="/locations/$location.getId()">$location.getDescription()</a></h4>
       #end
     #end
     <form action='/admin/addLocation' method="post">
@@ -50,7 +58,7 @@
     <h2>Rangers</h2>
     #if($rangers)
       #foreach($ranger in $rangers)
-      <h3>Ranger $ranger.getLastName()</h3>
+      <h3><a href="/rangers/$ranger.getId()">Ranger $ranger.getLastName()</a></h3>
       #end
     #end
     <form action='/admin/addRanger' method="post">

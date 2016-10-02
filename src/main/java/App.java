@@ -27,10 +27,19 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/location/:id", (request, response) -> {
+    get("/locations/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
+      model.put("location", Location.find(Integer.parseInt(request.params(":id"))));
       model.put("sightings", Sighting.allByLocation(Integer.parseInt(request.params(":id"))));
-      model.put("template", "templates/sightings.vtl");
+      model.put("template", "templates/location.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/rangers/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("ranger", Ranger.find(Integer.parseInt(request.params(":id"))));
+      model.put("sightings", Sighting.allByRanger(Integer.parseInt(request.params(":id"))));
+      model.put("template", "templates/ranger.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -44,6 +53,7 @@ public class App {
 
     get("/endangered/id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
+      model.put("animal", Animal.find(Integer.parseInt(request.params(":id"))));
       model.put("sightings", Sighting.allEndangered());
       model.put("template", "templates/endangered.vtl");
       return new ModelAndView(model, layout);
@@ -68,6 +78,7 @@ public class App {
 
     get("/animals/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
+      model.put("animal", Animal.find(Integer.parseInt(request.params(":id"))));
       model.put("sightings", Sighting.allAnimals());
       model.put("template", "templates/animal.vtl");
       return new ModelAndView(model, layout);
@@ -93,6 +104,7 @@ public class App {
 
     get("/pokemon/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
+      model.put("animal", Animal.find(Integer.parseInt(request.params(":id"))));
       model.put("sightings", Sighting.allPokemon());
       model.put("template", "templates/pokemon.vtl");
       return new ModelAndView(model, layout);
