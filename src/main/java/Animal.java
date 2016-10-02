@@ -74,7 +74,25 @@ public class Animal implements DatabaseManagement {
     // loadAnimals();
     // loadEndangered();
     // loadPokemon();
-    sql = "SELECT * FROM animals ORDER BY animalname";
+    sql = "SELECT * FROM animals WHERE type=1 OR type=2 ORDER BY animalname";
+    try(Connection cn = DB.sql2o.open()) {
+      return cn.createQuery(sql)
+      .throwOnMappingFailure(false)
+      .executeAndFetch(Animal.class);
+    }
+  }
+
+  public static List<Animal> allPokemon() {
+    String sql = "SELECT * FROM animals WHERE type=3 ORDER BY animalname";
+    try(Connection cn = DB.sql2o.open()) {
+      return cn.createQuery(sql)
+      .throwOnMappingFailure(false)
+      .executeAndFetch(Animal.class);
+    }
+  }
+
+  public static List<Animal> allEndangered() {
+    String sql = "SELECT * FROM animals WHERE type=2 ORDER BY animalname";
     try(Connection cn = DB.sql2o.open()) {
       return cn.createQuery(sql)
       .throwOnMappingFailure(false)

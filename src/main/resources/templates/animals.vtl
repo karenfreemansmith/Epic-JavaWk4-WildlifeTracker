@@ -1,0 +1,75 @@
+<h1><a href="/">Wildlife Tracker</a></h1>
+<div class="row">
+  <div class="col-xs-9">
+    <div class="row">
+      #foreach($animal in $animals)
+        <div class="col-xs-6">
+          #if($animal.getType()==2)
+            <h3><srong>* <a href="/animals/$animal.getId()">$animal.getName()</a></strong> * <em>(endangered)</em></h3>
+          #else
+            <h3><a href="/animals/$animal.getId()">$animal.getName()</a></h3>
+          #end
+        </div>
+      #end
+    </div>
+  </div>
+  <div class="col-xs-3">
+    #if($rangers)
+    <h4>Ranger Sign-in</h4>
+    <form action="/rangers" method="post">
+    <select name="badge" id="badge" class='btn btn-default form-control'>
+      #foreach($ranger in $rangers)
+      <option value="$ranger.getBadge()">Ranger $ranger.getLast()</option>
+      #end
+    </select>
+    <button type="submit">Sign-in</button>
+    </form>
+    <h4>Rangers must be added by an <a href="/admin">admin</a></h4>
+    #end
+
+    #if($visitors)
+      <h4>Visitor Sign-in</h4>
+      <form action="/visitors" method="post">
+      <div class="form-group">
+        <label for="email">Email: </label>
+        <input type="text" name="email" id="email" class="form-control">
+      </div>
+      <button type="submit" class='btn btn-default form-control'>Sign-in</button>
+      </form>
+    #end
+
+    #if($trainers)
+      <h4>Pokemon Trainer Sign-in</h4>
+      <form action="/trainers" method="post">
+      <div class="form-group">
+        <label for="nickname">Trainer Name: </label>
+        <input type="nickname" name="nickname" id="email" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="level">Level: </label>
+        <input type="text" name="level" id="level" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="email">Email: </label>
+        <input type="text" name="email" id="email" class="form-control">
+      </div>
+      <button type="submit" class='btn btn-default form-control'>Sign-in</button>
+      </form>
+    #end
+
+    #if($signedin)
+    <h4>Report Sighting</h4>
+    <form action='/' method="post">
+      <div class="form-group">
+        <label for="animal">Animal: </label>
+        <input id="animal" name="animal" class="form-control" type="text">
+      </div>
+      <div class="form-group">
+        <label for="location">Location: </label>
+        <input id="location" name="location" class="form-control" type="text">
+      </div>
+      <button type='submit' class='btn btn-default form-control'>Add Sighting</button>
+    </form>
+    #end
+  </div>
+</div>
