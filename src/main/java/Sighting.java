@@ -20,7 +20,7 @@ public class Sighting implements DatabaseManagement {
 
   public void save() {
     try(Connection cn = DB.sql2o.open()) {
-      String sql = "INSERT INTO sightings (animalId, locationId, personId) VALUES (:animalId, :locationId, :personId)";
+      String sql = "INSERT INTO sightings (animalId, locationId, personId, time) VALUES (:animalId, :locationId, :personId, now())";
       this.id = (int) cn.createQuery(sql, true)
         .addParameter("animalId", this.animalId)
         .addParameter("locationId", this.locationId)
@@ -132,7 +132,7 @@ public class Sighting implements DatabaseManagement {
   }
 
   public String getTime() {
-    String strTime = new SimpleDateFormat("MMMMM dd, yyyy").format(time);
+    String strTime = new SimpleDateFormat("MMMMM dd, yyyy HH:mm").format(time);
     return strTime;
   }
 

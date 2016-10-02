@@ -16,10 +16,10 @@
   <div class="col-xs-3">
     #if($rangers)
     <h4>Ranger Sign-in</h4>
-    <form action="/rangers" method="post">
+    <form action="/sign-in/rangers" method="post">
     <select name="badge" id="badge" class='btn btn-default form-control'>
       #foreach($ranger in $rangers)
-      <option value="$ranger.getBadge()">Ranger $ranger.getLast()</option>
+      <option value="$ranger.getBadge()">Ranger $ranger.getLastName()</option>
       #end
     </select>
     <button type="submit">Sign-in</button>
@@ -27,9 +27,9 @@
     <h4>Rangers must be added by an <a href="/admin">admin</a></h4>
     #end
 
-    #if($visitors)
+    #if($visitor)
       <h4>Visitor Sign-in</h4>
-      <form action="/visitors" method="post">
+      <form action="/sign-in/visitors" method="post">
       <div class="form-group">
         <label for="email">Email: </label>
         <input type="text" name="email" id="email" class="form-control">
@@ -38,9 +38,9 @@
       </form>
     #end
 
-    #if($trainers)
+    #if($trainer)
       <h4>Pokemon Trainer Sign-in</h4>
-      <form action="/trainers" method="post">
+      <form action="/sign-in/trainers" method="post">
       <div class="form-group">
         <label for="nickname">Trainer Name: </label>
         <input type="nickname" name="nickname" id="email" class="form-control">
