@@ -60,6 +60,17 @@ public class Ranger extends Person {
     }
   }
 
+  public static Ranger findByBadge(int badge) {
+    try(Connection cn = DB.sql2o.open()) {
+      String sql = "SELECT * FROM people WHERE badge=:badge";
+      Ranger ranger = cn.createQuery(sql)
+        .addParameter("badge", badge)
+        .throwOnMappingFailure(false)
+        .executeAndFetchFirst(Ranger.class);
+      return ranger;
+    }
+  }
+
   public int getBadge() {
     return badge;
   }

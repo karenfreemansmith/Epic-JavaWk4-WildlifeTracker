@@ -12,14 +12,18 @@
   <div class="col-xs-3">
     #if($person)
     <h4>Report Sighting</h4>
-    <form action="/animals/sightings/$person.getId()" method="post">
+    <form action="/pokemon/sightings/$person.getId()" method="post">
       <div class="form-group">
-        <label for="animal">Animal: </label>
+        <label for="animal">Pokemon: </label>
         <select id="animal" name="animal" class="form-control">
           #foreach($animal in $animals)
             <option value="$animal.getId()">$animal.getName()</option>
           #end
         </select>
+      </div>
+      <div class="form-group">
+        <label for="cp">Pokemon CP>
+        <input type="number" name="cp" id="cp" class="form-control">
       </div>
       <div class="form-group">
         <label for="location">Location: </label>
@@ -33,7 +37,7 @@
     </form>
     #end
     <h4>Update Profile</h4>
-    <form action="/profile/visitors/$person.getId()" method="post">
+    <form action="/profile/trainers/$person.getId()" method="post">
       <div class="form-group col-xs-6">
         <label for="first">First name: </label>
         <input id="first" name="first" class="form-control" type="text">
@@ -65,6 +69,14 @@
       <div class="form-group col-xs-9">
         <label for="email">Email: </label>
         <input id="email" name="email" class="form-control" type="text">
+      </div>
+      <div class="form-group col-xs-6">
+        <label for="nickname">Trainer Nickname: </label>
+        <input id="nickname" name="nickname" class="form-control" type="text">
+      </div>
+      <div class="form-group col-xs-6">
+        <label for="level">Trainer Level: </label>
+        <input id="level" name="level" class="form-control" type="number">
       </div>
       <button type='submit' class='btn btn-default form-control'>Update Profile</button>
     </form>

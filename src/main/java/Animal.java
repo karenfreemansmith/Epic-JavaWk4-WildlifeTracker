@@ -60,7 +60,7 @@ public class Animal implements DatabaseManagement {
   }
 
   public List<Sighting> allByAnimal() {
-    String sql = "SELECT * FROM sightings WHERE animalid = :id ORDER BY time";
+    String sql = "SELECT * FROM sightings WHERE animalid = :id ORDER BY time ASC";
     try(Connection cn = DB.sql2o.open()) {
       return cn.createQuery(sql)
       .addParameter("id", this.id)

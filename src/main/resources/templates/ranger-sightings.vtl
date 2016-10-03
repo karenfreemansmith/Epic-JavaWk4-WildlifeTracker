@@ -12,13 +12,32 @@
   <div class="col-xs-3">
     #if($person)
     <h4>Report Sighting</h4>
-    <form action="/animals/sightings/$person.getId()" method="post">
+    <form action="/endangered/sightings/$person.getId()" method="post">
       <div class="form-group">
         <label for="animal">Animal: </label>
         <select id="animal" name="animal" class="form-control">
           #foreach($animal in $animals)
             <option value="$animal.getId()">$animal.getName()</option>
           #end
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="age">Animal Age:
+        <select name="age" id="age" class="form-control">
+          <option value=4>Old</option>
+          <option value=3>Adult</option>
+          <option value=2>Young</option>
+          <option value=1>Baby</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="health">Animal Health:
+        <select name="health" id="health" class="form-control">
+          <option value=5>Vigorous</option>
+          <option value=4>Healthy</option>
+          <option value=3>Fair</option>
+          <option value=2>Sick</option>
+          <option value=1>Dead</option>
         </select>
       </div>
       <div class="form-group">
@@ -32,5 +51,41 @@
       <button type='submit' class='btn btn-default form-control'>Add Sighting</button>
     </form>
     #end
+    <h4>Update Profile</h4>
+    <form action="/profile/rangers/$person.getId()" method="post">
+      <div class="form-group col-xs-6">
+        <label for="first">First name: </label>
+        <input id="first" name="first" class="form-control" type="text">
+      </div>
+      <div class="form-group col-xs-6">
+        <label for="last">Last Name: </label>
+        <input id="last" name="last" class="form-control" type="text">
+      </div>
+      <div class="form-group col-xs-6">
+        <label for="phone">Phone Number: </label>
+        <input id="phone" name="phone" class="form-control" type="text">
+      </div>
+      <div class="form-group col-xs-6">
+        <label for="address">Street Address: </label>
+        <input id="address" name="address" class="form-control" type="text">
+      </div>
+      <div class="form-group col-xs-6">
+        <label for="city">City: </label>
+        <input id="city" name="city" class="form-control" type="text">
+      </div>
+      <div class="form-group col-xs-3">
+        <label for="state">State: </label>
+        <input id="state" name="state" class="form-control" type="text">
+      </div>
+      <div class="form-group col-xs-3">
+        <label for="zip">Zip: </label>
+        <input id="zip" name="zip" class="form-control" type="text">
+      </div>
+      <div class="form-group col-xs-9">
+        <label for="email">Email: </label>
+        <input id="email" name="email" class="form-control" type="text">
+      </div>
+      <button type='submit' class='btn btn-default form-control'>Update Profile</button>
+    </form>
   </div>
 </div>
