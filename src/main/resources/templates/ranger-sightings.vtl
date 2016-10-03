@@ -24,20 +24,20 @@
       <div class="form-group">
         <label for="age">Animal Age:
         <select name="age" id="age" class="form-control">
-          <option value=4>Old</option>
-          <option value=3>Adult</option>
-          <option value=2>Young</option>
-          <option value=1>Baby</option>
+          <option value="4">Old</option>
+          <option value="3">Adult</option>
+          <option value="2">Young</option>
+          <option value="1">Baby</option>
         </select>
       </div>
       <div class="form-group">
         <label for="health">Animal Health:
         <select name="health" id="health" class="form-control">
-          <option value=5>Vigorous</option>
-          <option value=4>Healthy</option>
-          <option value=3>Fair</option>
-          <option value=2>Sick</option>
-          <option value=1>Dead</option>
+          <option value="5">Vigorous</option>
+          <option value="4">Healthy</option>
+          <option value="3">Fair</option>
+          <option value="2">Sick</option>
+          <option value="1">Dead</option>
         </select>
       </div>
       <div class="form-group">
@@ -55,35 +55,35 @@
     <form action="/profile/rangers/$person.getId()" method="post">
       <div class="form-group col-xs-6">
         <label for="first">First name: </label>
-        <input id="first" name="first" class="form-control" type="text">
+        <input id="first" name="first" class="form-control" type="text" value="$person.getFirstName()">
       </div>
       <div class="form-group col-xs-6">
         <label for="last">Last Name: </label>
-        <input id="last" name="last" class="form-control" type="text">
+        <input id="last" name="last" class="form-control" type="text" value="$person.getLastName()">
       </div>
       <div class="form-group col-xs-6">
         <label for="phone">Phone Number: </label>
-        <input id="phone" name="phone" class="form-control" type="text">
+        <input id="phone" name="phone" class="form-control" type="text" value="$person.getPhoneNumber()">
       </div>
       <div class="form-group col-xs-6">
         <label for="address">Street Address: </label>
-        <input id="address" name="address" class="form-control" type="text">
+        <input id="address" name="address" class="form-control" type="text" value="$person.getAddress()">
       </div>
       <div class="form-group col-xs-6">
         <label for="city">City: </label>
-        <input id="city" name="city" class="form-control" type="text">
+        <input id="city" name="city" class="form-control" type="text" value="$person.getCity()">
       </div>
       <div class="form-group col-xs-3">
         <label for="state">State: </label>
-        <input id="state" name="state" class="form-control" type="text">
+        <input id="state" name="state" class="form-control" type="text" value="$person.getState()">
       </div>
       <div class="form-group col-xs-3">
         <label for="zip">Zip: </label>
-        <input id="zip" name="zip" class="form-control" type="text">
+        <input id="zip" name="zip" class="form-control" type="text" value="$person.getZip()">
       </div>
       <div class="form-group col-xs-9">
         <label for="email">Email: </label>
-        <input id="email" name="email" class="form-control" type="text">
+        <input id="email" name="email" class="form-control" type="text" value="$person.getEmail()">
       </div>
       <button type='submit' class='btn btn-default form-control'>Update Profile</button>
     </form>

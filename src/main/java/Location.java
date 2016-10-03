@@ -31,7 +31,12 @@ public class Location  implements DatabaseManagement {
   @Override
   public void delete() {
     try(Connection cn = DB.sql2o.open()) {
-      String sql = "DELETE FROM locations WHERE id = :id;";
+      String sql;
+      sql = "DELETE FROM sightings WHERE locationid= :id;";
+      cn.createQuery(sql)
+      .addParameter("id", this.id)
+      .executeUpdate();
+      sql = "DELETE FROM locations WHERE id = :id;";
       cn.createQuery(sql)
       .addParameter("id", this.id)
       .executeUpdate();

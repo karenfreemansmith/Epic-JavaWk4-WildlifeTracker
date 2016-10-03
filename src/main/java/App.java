@@ -69,7 +69,11 @@ public class App {
 
     post("/admin/locations/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      model.put("location", Location.find(Integer.parseInt(request.params(":id"))));
+      Location location = Location.find(Integer.parseInt(request.params(":id")));
+      location.setDescription(request.queryParams("description"));
+      location.setMapRow(Integer.parseInt(request.queryParams("maprow")));
+      location.setMapCol(Integer.parseInt(request.queryParams("mapcol")));
+      model.put("location", Location.find(location.getId()));
       model.put("sightings", Sighting.allByLocation(Integer.parseInt(request.params(":id"))));
       model.put("template", "templates/location-admin.vtl");
       return new ModelAndView(model, layout);
@@ -108,17 +112,20 @@ public class App {
 
     post("/admin/rangers/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
+      Ranger person = Ranger.find(Integer.parseInt(request.params(":id")));
+      person.setFirstName(request.queryParams("first"));
+      person.setLastName(request.queryParams("last"));
+      person.setPhoneNumber(request.queryParams("phone"));
+      person.setAddress(request.queryParams("address"));
+      person.setCity(request.queryParams("city"));
+      person.setState(request.queryParams("state"));
+      person.setZip(request.queryParams("zip"));
+      person.setEmail(request.queryParams("email"));
+      person.setBadge(Integer.parseInt(request.queryParams("badge")));
+      person.setContact(request.queryParams("contact"));
       model.put("ranger", Ranger.find(Integer.parseInt(request.params(":id"))));
       model.put("sightings", Sighting.allByRanger(Integer.parseInt(request.params(":id"))));
       model.put("template", "templates/ranger-admin.vtl");
-      return new ModelAndView(model, layout);
-    }, new VelocityTemplateEngine());
-
-    get("/admin/delete/rangers/:id", (request, response) -> {
-      Map<String, Object> model = new HashMap<String, Object>();
-      Ranger.find(Integer.parseInt(request.params(":id"))).delete();
-      response.redirect("/admin");
-      model.put("template", "templates/ranger.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -129,7 +136,7 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    post("/profile/rangers/id", (request, response) -> {
+    post("/profile/rangers/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       Ranger person = Ranger.find(Integer.parseInt(request.params(":id")));
       person.setFirstName(request.queryParams("first"));
@@ -153,7 +160,7 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    post("/profile/visitors/id", (request, response) -> {
+    post("/profile/visitors/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       Visitor person = Visitor.find(Integer.parseInt(request.params(":id")));
       person.setFirstName(request.queryParams("first"));

@@ -1,21 +1,69 @@
 <h1><a href="/">Wildlife Tracker</a></h1>
-<img src="/images/$animal.getPhoto()">
-<h2>$location.getDescription()</h2>
+<div class="row">
+  <div class="col-xs-6">
+    <h2>$location.getDescription()</h2>
+    <p><a href="/admin/delete/locations/$location.getId()">Delete $location.getDescription() and all sightings.</a></p>
 
-#if($sightings)
-<h3>Sightings:</h3>
-<div class="row">
-  <div class="col-xs-3"><h3>Time:</h3></div>
-  <div class="col-xs-4">
-    <h3>Animal</h3>
+    #if($sightings)
+    <h3>Sightings:</h3>
+    <div class="row">
+      <div class="col-xs-3"><h3>Time:</h3></div>
+      <div class="col-xs-4">
+        <h3>Animal</h3>
+      </div>
+    </div>
+    #foreach($sighting in $sightings)
+    <div class="row">
+      <div class="col-xs-3">$sighting.getTime()</div>
+      <div class="col-xs-4">
+        $sighting.getAnimal()
+      </div>
+    </div>
+    #end
+    #end
+  </div>
+  <div class="col-xs-6">
+    <p><a href="/admin">Back to Admin</a></p>
+    <form action='/admin/locations/$location.getId()' method="post">
+      <div class="form-group">
+        <label for="description">Location: </label>
+        <input id="description" name="description" class="form-control" type="text" value="$location.getDescription()">
+      </div>
+      <div class="form-group">
+        <label for="mapcol">Map Column: </label>
+        <select name="mapcol" class="form-control" id="mapcol">
+          <option value="1" #if($location.getMapCol()==1) selected #end>A</option>
+          <option value="2" #if($location.getMapCol()==2) selected #end>B</option>
+          <option value="3" #if($location.getMapCol()==3) selected #end>C</option>
+          <option value="4" #if($location.getMapCol()==4) selected #end>D</option>
+          <option value="5" #if($location.getMapCol()==5) selected #end>E</option>
+          <option value="6" #if($location.getMapCol()==6) selected #end>F</option>
+          <option value="7" #if($location.getMapCol()==7) selected #end>G</option>
+          <option value="8" #if($location.getMapCol()==8) selected #end>H</option>
+          <option value="9" #if($location.getMapCol()==9) selected #end>I</option>
+          <option value="10" #if($location.getMapCol()==10) selected #end>J</option>
+          <option value="11" #if($location.getMapCol()==11) selected #end>K</option>
+          <option value="11" #if($location.getMapCol()==12) selected #end>L</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="maprow">Map Row: </label>
+        <select name="maprow" id="maprow" class="form-control">
+          <option value="1" #if($location.getMapRow()==1) selected #end>1</option>
+          <option value="2" #if($location.getMapRow()==2) selected #end>2</option>
+          <option value="3" #if($location.getMapRow()==3) selected #end>3</option>
+          <option value="4" #if($location.getMapRow()==4) selected #end>4</option>
+          <option value="5" #if($location.getMapRow()==5) selected #end>5</option>
+          <option value="6" #if($location.getMapRow()==6) selected #end>6</option>
+          <option value="7" #if($location.getMapRow()==7) selected #end>7</option>
+          <option value="8" #if($location.getMapRow()==8) selected #end>8</option>
+          <option value="9" #if($location.getMapRow()==9) selected #end>9</option>
+          <option value="10" #if($location.getMapRow()==10) selected #end>10</option>
+          <option value="11" #if($location.getMapRow()==11) selected #end>11</option>
+          <option value="11" #if($location.getMapRow()==12) selected #end>12</option>
+        </select>
+      </div>
+      <button type='submit' class='btn btn-default form-control'>Update Location</button>
+    </form>
   </div>
 </div>
-#foreach($sighting in $sightings)
-<div class="row">
-  <div class="col-xs-3">$sighting.getTime()</div>
-  <div class="col-xs-4">
-    $sighting.getAnimal()
-  </div>
-</div>
-#end
-#end
