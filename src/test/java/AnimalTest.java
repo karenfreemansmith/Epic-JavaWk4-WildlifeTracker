@@ -33,19 +33,14 @@ public class AnimalTest {
     assertEquals(null, Animal.find(animalId));
   }
 
-  // @Test
-  // public void allByAnimal_returnsAllSightingsForAnimal_true() {
-  //   assertTrue(animal1.allByAnimal().size()>1);
-  // }
+  @Test
+  public void allByAnimal_returnsAllSightingsForAnimal_true() {
+    assertTrue(animal1.allByAnimal().size()>1);
+  }
 
   @Test
   public void all_returnsAllInstances_true() {
     assertTrue(Animal.all().size()>1);
-  }
-
-  @Test
-  public void find_returnCorrectEndangered_true() {
-    assertTrue(Animal.find(animal1.getId()).equals(animal1));
   }
 
   @Test

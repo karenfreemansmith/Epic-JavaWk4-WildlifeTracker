@@ -25,29 +25,37 @@ public class SightingTest {
   }
 
   @Test
-  public void delete_deletesASighting_true() {
-    int sightingId = sighting2.getId();
-    sighting2.delete();
-    assertEquals(null, Sighting.find(sightingId));
+  public void all_returnsAllInstances_true() {
+    assertTrue(Sighting.all().size()>1);
   }
 
   @Test
-  public void find_returnCorrectSighting_true() {
-    assertTrue(Sighting.find(sighting1.getId()).equals(sighting1));
+  public void all_returnsAllByLocationInstances_true() {
+    assertTrue(Sighting.all().size()==1);
   }
 
   @Test
-  public void getAnimal_returnsCorrectAnimal_1() {
-    assertEquals(2, sighting1.getAnimal());
+  public void all_returnsAllByAnimalInstances_true() {
+    assertTrue(Sighting.all().size()==1);
   }
 
   @Test
-  public void getLocation_returnsCorrectLocation_2() {
-    assertEquals(2, sighting1.getLocation());
+  public void all_returnsAllByRangerInstances_true() {
+    assertTrue(Sighting.all().size()==1);
   }
 
   @Test
-  public void getPerson_returnsCorrectPerson_2() {
-    assertEquals(1, sighting1.getPerson());
+  public void getAnimalId_returnsCorrectAnimal_1() {
+    assertEquals(2, sighting1.getAnimalId());
+  }
+
+  @Test
+  public void getLocationId_returnsCorrectLocation_2() {
+    assertEquals(2, sighting1.getLocationId());
+  }
+
+  @Test
+  public void getPersonId_returnsCorrectPerson_2() {
+    assertEquals(1, sighting1.getPersonId());
   }
 }

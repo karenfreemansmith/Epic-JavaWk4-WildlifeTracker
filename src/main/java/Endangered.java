@@ -20,7 +20,7 @@ public class Endangered extends Sighting {
         .addParameter("locationId", this.locationId)
         .addParameter("personId", this.personId)
         .addParameter("age", this.age)
-        .addParameter("health", this.heath)
+        .addParameter("health", this.health)
         .throwOnMappingFailure(false)
         .executeUpdate()
         .getKey();

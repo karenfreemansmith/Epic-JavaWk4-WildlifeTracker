@@ -71,8 +71,18 @@ public class Sighting {
   }
 
   public static List<Sighting> allAnimals() {
-    //String sql = "SELECT animals.type FROM sightings JOIN animals ON (sightings.animalId=animals.id) WHERE NOT animal.type = 3 ORDER BY time DESC";
-    String sql = "SELECT * FROM sightings ORDER BY time DESC";
+    //String sql = "SELECT animals.type FROM sightings JOIN animals ON (sightings.animalId=animals.id) WHERE NOT animal.type = 3 ORDER BY time ASC";
+    String sql = "SELECT * FROM sightings ORDER BY time ASC";
+    try(Connection cn = DB.sql2o.open()) {
+      return cn.createQuery(sql)
+      .throwOnMappingFailure(false)
+      .executeAndFetch(Sighting.class);
+    }
+  }
+
+  public static List<Sighting> allEndangered() {
+    //String sql = "SELECT animals.type FROM sightings JOIN animals ON (sightings.animalId=animals.id) WHERE animal.type = 2 ORDER BY time ASC";
+    String sql = "SELECT * FROM sightings ORDER BY time ASC";
     try(Connection cn = DB.sql2o.open()) {
       return cn.createQuery(sql)
       .throwOnMappingFailure(false)
@@ -83,7 +93,7 @@ public class Sighting {
 
   public static List<Sighting> allPokemon() {
     //String sql = "SELECT animals.type FROM sightings JOIN animals ON (sightings.animalId=animals.id) WHERE animal.type = 3 ORDER BY time DESC";
-    String sql = "SELECT * FROM sightings ORDER BY time DESC";
+    String sql = "SELECT * FROM sightings ORDER BY time ASC";
     try(Connection cn = DB.sql2o.open()) {
       return cn.createQuery(sql)
       .throwOnMappingFailure(false)
