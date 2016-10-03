@@ -22,22 +22,29 @@ public class Trainer extends Person {
 
   public void save() {
     try(Connection cn = DB.sql2o.open()) {
-      String sql = "INSERT INTO people (firstname, lastname, phonenumber, address, city, state, zip, email, trainername, level, type) VALUES (:firstname, :lastname, :phonenumber, :address, :city, :state, :zip, :email, :trainername, :level, 3)";
-      this.id = (int) cn.createQuery(sql, true)
-        .addParameter("lastname", this.lastname)
-        .addParameter("firstname", this.firstname)
-        .addParameter("phonenumber", this.phonenumber)
-        .addParameter("address", this.address)
-        .addParameter("city", this.city)
-        .addParameter("state", this.state)
-        .addParameter("zip", this.zip)
-        .addParameter("email", this.email)
-        .addParameter("trainername", this.trainerName)
-        .addParameter("level", this.level)
-        .throwOnMappingFailure(false)
-        .executeUpdate()
-        .getKey();
 
+      //test to see if trainername is in database already
+      //String sql = "SELECT id FROM people WHERE trainername= :trainername";
+      // int count=(int)cn.createQuery(sql)
+      //   .addParameter("trainername", this.trainername);
+      //   .executeAndFetchFirst(Integer.class);
+      // if(count==0) {
+        String sql = "INSERT INTO people (firstname, lastname, phonenumber, address, city, state, zip, email, trainername, level, type) VALUES (:firstname, :lastname, :phonenumber, :address, :city, :state, :zip, :email, :trainername, :level, 3)";
+        this.id = (int) cn.createQuery(sql, true)
+          .addParameter("lastname", this.lastname)
+          .addParameter("firstname", this.firstname)
+          .addParameter("phonenumber", this.phonenumber)
+          .addParameter("address", this.address)
+          .addParameter("city", this.city)
+          .addParameter("state", this.state)
+          .addParameter("zip", this.zip)
+          .addParameter("email", this.email)
+          .addParameter("trainername", this.trainerName)
+          .addParameter("level", this.level)
+          .throwOnMappingFailure(false)
+          .executeUpdate()
+          .getKey();
+    //  }
     }
   }
 
@@ -58,6 +65,19 @@ public class Trainer extends Person {
         .throwOnMappingFailure(false)
         .executeAndFetchFirst(Trainer.class);
       return trainer;
+    }
+  }
+
+  public static Trainer findByName(String name) {
+    try(Connection cn = DB.sql2o.open()) {
+      String sql = "SELECT * FROM people WHERE trainername=:name";
+      Trainer trainer = cn.createQuery(sql)
+        .addParameter("name", name)
+        .throwOnMappingFailure(false)
+        .executeAndFetchFirst(Trainer.class);
+      return trainer;
+    } catch (NullPointerException e) {
+      throw new UnsupportedOperationException("Trainer Not Found");
     }
   }
 

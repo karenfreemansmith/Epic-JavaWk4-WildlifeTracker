@@ -340,9 +340,18 @@ public class App {
 
     post("/sign-in/trainers", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      Trainer trainer = new Trainer("", "", "", "", "", "", "", request.queryParams("email"), request.queryParams("nickname"), Integer.parseInt(request.queryParams("level")));
-      response.redirect("/pokemon/sightings/" + trainer.getId());
-      model.put("template", "templates/endangered.vtl");
+      Trainer trainer;
+      try {
+        trainer = Trainer.findByName(request.queryParams("nickname"));
+      } catch (UnsupportedOperationException e) {
+          trainer = new Trainer("", "", "", "", "", "", "", request.queryParams("email"), request.queryParams("nickname"), Integer.parseInt(request.queryParams("level")));
+      }
+      try {
+        response.redirect("/pokemon/sightings/" + trainer.getId());
+      } catch(NullPointerException e) {
+        model.put("msg", e.getMessage());
+      }
+      model.put("template", "templates/error.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 

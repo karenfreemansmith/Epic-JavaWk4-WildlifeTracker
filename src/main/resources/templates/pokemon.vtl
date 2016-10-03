@@ -1,28 +1,33 @@
 <h1><a href="/">Pokemon Tracker</a></h1>
-<img src="/images/$animal.getPhoto()">
-<h2>$animal.getName()</h2>
-<p>Description of pokemon?...</p>
-#if($sightings)
-<h3>Sightings:</h3>
 <div class="row">
-  <div class="col-xs-4"><h3>Time:</h3></div>
-  <div class="col-xs-4">
-    <h3>Location</h3>
+  <div class="col-xs-6">
+    <img src="/images/$animal.getPhoto()">
+    <h2>$animal.getName()</h2>
   </div>
-  <div class="col-xs-4">
-    <h3>Trainer Verification</h3>
+  <div class="colxs-6">
+    #if($sightings)
+    <h3>Sightings:</h3>
+    <div class="row">
+      <div class="col-xs-4"><h3>Time:</h3></div>
+      <div class="col-xs-4">
+        <h3>Location</h3>
+      </div>
+      <div class="col-xs-4">
+        <h3>Trainer Verification</h3>
+      </div>
+    </div>
+    #foreach($sighting in $sightings)
+    <div class="row">
+      <div class="col-xs-4">$sighting.getTime()</div>
+      <div class="col-xs-4">
+        $sighting.getLocation()
+      </div>
+      <div class="col-xs-4">
+        $sighting.getCP()
+        verified by: $sighting.getTrainer()
+      </div>
+    </div>
+    #end
+    #end
   </div>
 </div>
-#foreach($sighting in $sightings)
-<div class="row">
-  <div class="col-xs-4">$sighting.getTime()</div>
-  <div class="col-xs-4">
-    $sighting.getLocation()
-  </div>
-  <div class="col-xs-4">
-    $sighting.getCP()
-    verified by: $sighting.getTrainer()
-  </div>
-</div>
-#end
-#end

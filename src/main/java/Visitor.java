@@ -16,6 +16,7 @@ public class Visitor extends Person {
 
   public void save() {
     try(Connection cn = DB.sql2o.open()) {
+      //test to see if email is in database already
       String sql = "INSERT INTO people (firstname, lastname, phonenumber, address, city, state, zip, email, type) VALUES (:firstname, :lastname, :phonenumber, :address, :city, :state, :zip, :email, 2)";
       this.id = (int) cn.createQuery(sql, true)
         .addParameter("lastname", this.lastname)
