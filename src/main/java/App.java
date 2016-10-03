@@ -20,6 +20,8 @@ public class App {
 
     setPort(port);
 
+    Animal.initializeData();
+
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("rangers", Ranger.all());
@@ -344,7 +346,7 @@ public class App {
       try {
         trainer = Trainer.findByName(request.queryParams("nickname"));
       } catch (UnsupportedOperationException e) {
-          trainer = new Trainer("", "", "", "", "", "", "", request.queryParams("email"), request.queryParams("nickname"), Integer.parseInt(request.queryParams("level")));
+        trainer = new Trainer("", "", "", "", "", "", "", request.queryParams("email"), request.queryParams("nickname"), Integer.parseInt(request.queryParams("level")));
       }
       try {
         response.redirect("/pokemon/sightings/" + trainer.getId());

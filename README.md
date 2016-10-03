@@ -72,7 +72,9 @@ Final Project for Week 4, Java at Epicodus. A program to track wildlife sighting
 For questions, concerns, or suggestions please email karenfreemansmith@gmail.com
 
 ## Known Issues
-* Missing some tests
+* Trying to use constants broke SQL statements, need to find somewhere else to use them
+* Broken throws exception - not catching correct error to activate catch block
+* Broken attempt(s) to join tables and sort pokemon from real animals - both show where only one is wanted
 * Pages with lists load extremely slow...
 
 ## Technologies Used

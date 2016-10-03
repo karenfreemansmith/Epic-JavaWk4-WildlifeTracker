@@ -8,11 +8,23 @@ public class Animal implements DatabaseManagement {
   private String photo;
   private int type;
 
+  public static final int NORMAL_ANIMAL = 1;
+  public static final int ENDANGERED_ANIMAL = 2;
+  public static final int POKEMON = 3;
+
   public Animal(String name, String photo, int type) {
     this.animalname = name;
     this.photo = photo;
     this.type = type;
     this.save();
+  }
+
+  public static void initializeData() {
+    if(Animal.all().size()==0) {
+      loadAnimals();
+      loadEndangered();
+      loadPokemon();
+    }
   }
 
   public void save() {
@@ -65,12 +77,7 @@ public class Animal implements DatabaseManagement {
   }
 
   public static List<Animal> all() {
-    String sql;
-    // check to see if table is empty and run load routines if it is
-    // loadAnimals();
-    // loadEndangered();
-    // loadPokemon();
-    sql = "SELECT * FROM animals WHERE type=1 OR type=2 ORDER BY animalname";
+    String sql = "SELECT * FROM animals WHERE type=1 OR type=2 ORDER BY animalname";
     try(Connection cn = DB.sql2o.open()) {
       return cn.createQuery(sql)
       .throwOnMappingFailure(false)
@@ -338,5 +345,4 @@ public class Animal implements DatabaseManagement {
     newPokemon = new Animal("Mewtwo", "pokemon/150.png", 3);
     newPokemon = new Animal("Mew", "pokemon/151.png", 3);
   }
-
 }
