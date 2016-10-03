@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
-public class Sighting implements DatabaseManagement {
+public class Sighting {
   protected int id;
   protected int personId;
   protected int animalId;
@@ -28,32 +28,6 @@ public class Sighting implements DatabaseManagement {
         .throwOnMappingFailure(false)
         .executeUpdate()
         .getKey();
-    }
-  }
-
-  @Override
-  public void delete() {}
-    public static void delete(int id) {
-      try(Connection cn = DB.sql2o.open()) {
-        String sql = "DELETE FROM sightings WHERE id = :id;";
-        cn.createQuery(sql)
-        .addParameter("id", id)
-        .executeUpdate();
-      }
-    }
-
-  @Override
-  public boolean equals(Object otherObject) {
-    return false;
-  }
-
-  public static Sighting find(int id) {
-    try(Connection cn = DB.sql2o.open()) {
-      String sql = "SELECT * FROM sightings WHERE id=:id";
-      Sighting sighting = cn.createQuery(sql)
-        .addParameter("id", id)
-        .executeAndFetchFirst(Sighting.class);
-      return sighting;
     }
   }
 
@@ -116,17 +90,6 @@ public class Sighting implements DatabaseManagement {
       .executeAndFetch(Sighting.class);
     }
   }
-
-
-  public static List<Sighting> allEndangered() {
-    String sql = "SELECT * FROM sightings ORDER BY time ASC";
-    try(Connection cn = DB.sql2o.open()) {
-      return cn.createQuery(sql)
-      .throwOnMappingFailure(false)
-      .executeAndFetch(Sighting.class);
-    }
-  }
-
 
   // getters and setters for each property
   public int getId() {

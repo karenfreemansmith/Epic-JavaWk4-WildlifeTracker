@@ -9,16 +9,21 @@ public class Endangered extends Sighting {
     super(personId, animalId, locationId);
     this.age = age;
     this.health = health;
+    save();
   }
 
-  public static Endangered find(int id) {
+  public void save() {
     try(Connection cn = DB.sql2o.open()) {
-      String sql = "SELECT * FROM animals WHERE id=:id";
-      Endangered animal = cn.createQuery(sql)
-        .addParameter("id", id)
+      String sql = "INSERT INTO sightings (animalId, locationId, personId, time, age, health) VALUES (:animalId, :locationId, :personId, now()), age, health";
+      this.id = (int) cn.createQuery(sql, true)
+        .addParameter("animalId", this.animalId)
+        .addParameter("locationId", this.locationId)
+        .addParameter("personId", this.personId)
+        .addParameter("age", this.age)
+        .addParameter("health", this.heath)
         .throwOnMappingFailure(false)
-        .executeAndFetchFirst(Endangered.class);
-      return animal;
+        .executeUpdate()
+        .getKey();
     }
   }
 

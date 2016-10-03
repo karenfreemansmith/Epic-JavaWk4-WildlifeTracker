@@ -10,8 +10,10 @@ public class PokemonTest {
 
   @Before
   public void setup() {
-    pokemon1 = new Pokemon("Pikachu", "", 3, 456);
-    pokemon2 = new Pokemon("Zapados", "", 3, 234);
+    pokemon1 = new Animal("Pikachu", "", 3, 456);
+    pokemon2 = new Animal("Zapados", "", 3, 234);
+    sighting1 = new Pokemon(1,2,2, 456);
+    sighting2 = new Pokemon(2,1,1, 234);
   }
 
   @Test

@@ -10,8 +10,10 @@ public class EndangeredTest {
 
   @Before
   public void setup() {
-    endangered1 = new Endangered("spotted owl", "image.jpg", 2, 1, 1);
-    endangered2 = new Endangered("Canada Lynx", "image.jpg", 2, 2, 3);
+    endangered1 = new Animal("spotted owl", "image.jpg", 2, 1, 1);
+    endangered2 = new Animal("Canada Lynx", "image.jpg", 2, 2, 3);
+    sighting1 = new Endangered(1,2,2, 2, 2);
+    sighting2 = new Endangered(2,1,1, 2, 2);
   }
 
   @Test
