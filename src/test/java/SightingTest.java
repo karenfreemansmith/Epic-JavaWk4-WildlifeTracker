@@ -31,17 +31,17 @@ public class SightingTest {
 
   @Test
   public void all_returnsAllByLocationInstances_true() {
-    assertTrue(Sighting.all().size()==1);
+    assertTrue(Sighting.allByLocation(1).size()==1);
   }
 
   @Test
   public void all_returnsAllByAnimalInstances_true() {
-    assertTrue(Sighting.all().size()==1);
+    assertTrue(Sighting.allByAnimal(1).size()==1);
   }
 
   @Test
   public void all_returnsAllByRangerInstances_true() {
-    assertTrue(Sighting.all().size()==1);
+    assertTrue(Sighting.allByRanger(1).size()==1);
   }
 
   @Test

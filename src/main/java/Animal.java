@@ -64,15 +64,6 @@ public class Animal implements DatabaseManagement {
     }
   }
 
-  public List<Sighting> allByAnimal() {
-    String sql = "SELECT * FROM sightings WHERE animalid = :id ORDER BY time ASC";
-    try(Connection cn = DB.sql2o.open()) {
-      return cn.createQuery(sql)
-      .addParameter("id", this.id)
-      .executeAndFetch(Sighting.class);
-    }
-  }
-
   public static List<Animal> all() {
     String sql;
     // check to see if table is empty and run load routines if it is

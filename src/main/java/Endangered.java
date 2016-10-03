@@ -14,7 +14,7 @@ public class Endangered extends Sighting {
 
   public void save() {
     try(Connection cn = DB.sql2o.open()) {
-      String sql = "INSERT INTO sightings (animalId, locationId, personId, time, age, health) VALUES (:animalId, :locationId, :personId, now()), age, health";
+      String sql = "INSERT INTO sightings (animalId, locationId, personId, time, age, health) VALUES (:animalId, :locationId, :personId, now(), :age, :health)";
       this.id = (int) cn.createQuery(sql, true)
         .addParameter("animalId", this.animalId)
         .addParameter("locationId", this.locationId)
@@ -25,6 +25,10 @@ public class Endangered extends Sighting {
         .executeUpdate()
         .getKey();
     }
+  }
+
+  public int getId() {
+    return id;
   }
 
   public int getAge() {

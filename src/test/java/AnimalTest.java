@@ -34,11 +34,6 @@ public class AnimalTest {
   }
 
   @Test
-  public void allByAnimal_returnsAllSightingsForAnimal_true() {
-    assertTrue(animal1.allByAnimal().size()>1);
-  }
-
-  @Test
   public void all_returnsAllInstances_true() {
     assertTrue(Animal.all().size()>1);
   }

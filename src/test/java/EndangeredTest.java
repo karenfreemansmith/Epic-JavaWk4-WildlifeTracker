@@ -9,7 +9,7 @@ public class EndangeredTest {
 
   @Before
   public void setup() {
-    sighting1 = new Endangered(1,2,2, 2, 2);
+    sighting1 = new Endangered(1,2,2,2,2);
   }
 
   @Test
