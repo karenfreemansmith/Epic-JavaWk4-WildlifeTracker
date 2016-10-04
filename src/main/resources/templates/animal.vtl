@@ -1,10 +1,10 @@
 <h1><a href="/">Wildlife Tracker</a></h1>
 <div class="row">
-  <div class="col-xs-6">
+  <div class="col-xs-4">
     <img src="/images/$animal.getPhoto()">
     <h2>$animal.getName()</h2>
   </div>
-  <div class="col-xs-6">
+  <div class="col-xs-8">
     #if($sightings)
       <h3>Sightings:</h3>
       <div class="row">
@@ -13,8 +13,8 @@
       </div>
       #foreach($sighting in $sightings)
         <div class="row">
-          <div class="col-xs-3">$sighting.getTime()</div>
-          <div class="col-xs-9">$sighting.getLocation()</div>
+          <div class="col-xs-6"><h4>$sighting.getTime()</h4></div>
+          <div class="col-xs-6"><h4><a href="/locations/$sighting.getId()">$sighting.getLocation()</a></h4></div>
         </div>
       #end
     #end

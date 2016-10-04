@@ -10,7 +10,6 @@ public class Pokemon extends Sighting {
     this.save();
   }
 
-  @Override
   public void save() {
     try(Connection cn = DB.sql2o.open()) {
       String sql = "INSERT INTO sightings (animalId, locationId, personId, time, cp) VALUES (:animalId, :locationId, :personId, now(), :cp)";

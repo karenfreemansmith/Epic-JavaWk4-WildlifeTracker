@@ -286,6 +286,7 @@ public class App {
       int animalId = Integer.parseInt(request.queryParams("animal"));
       int locationId = Integer.parseInt(request.queryParams("location"));
       Sighting sighting = new Sighting(personId, animalId, locationId);
+      sighting.save();
       model.put("person", Visitor.find(personId));
       model.put("sightings", Sighting.allAnimals());
       model.put("animals", Animal.all());

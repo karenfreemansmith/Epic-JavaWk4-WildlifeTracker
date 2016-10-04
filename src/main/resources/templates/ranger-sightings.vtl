@@ -20,7 +20,9 @@
         <label for="animal">Animal: </label>
         <select id="animal" name="animal" class="form-control">
           #foreach($animal in $animals)
+            #if($animal.getType()==2)
             <option value="$animal.getId()">$animal.getName()</option>
+            #end
           #end
         </select>
       </div>

@@ -12,12 +12,15 @@
   <div class="col-xs-3">
     #if($person)
     <h4>Report Sighting</h4>
+    <p>Endangered species need to be verified by a ranger, please contact park services if you see any endangered animals.</p>
     <form action="/animals/sightings/$person.getId()" method="post">
       <div class="form-group">
         <label for="animal">Animal: </label>
         <select id="animal" name="animal" class="form-control">
           #foreach($animal in $animals)
+            #if($animal.getType()==1)
             <option value="$animal.getId()">$animal.getName()</option>
+            #end
           #end
         </select>
       </div>

@@ -15,7 +15,6 @@ public class Sighting {
     this.personId = personId;
     this.animalId = animalId;
     this.locationId = locationId;
-    this.save();
   }
 
   public void save() {
