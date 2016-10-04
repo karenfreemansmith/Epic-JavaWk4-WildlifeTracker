@@ -357,7 +357,7 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       Trainer trainer;
       try {
-        trainer = new Trainer("", "", "", "", "", "", "", request.queryParams("email"), request.queryParams("nickname"), Integer.parseInt(request.queryParams("level")));
+        trainer = new Trainer("", "", "", "", "", "", "", "", request.queryParams("nickname"), 0);
       } catch (UnsupportedOperationException e){
         trainer = Trainer.findByName(request.queryParams("nickname"));
         if(e.getMessage()=="Trainer already exists") {
