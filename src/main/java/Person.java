@@ -13,6 +13,10 @@ public abstract class Person  implements DatabaseManagement {
   public String zip;
   public String email;
 
+  public static final int RANGER_TYPE = 1;
+  public static final int VISITOR_TYPE = 2;
+  public static final int TRAINER_TYPE = 3;
+
   @Override
   public void delete() {
     try(Connection cn = DB.sql2o.open()) {
@@ -156,6 +160,4 @@ public abstract class Person  implements DatabaseManagement {
         .executeUpdate();
     }
   }
-
-
 }

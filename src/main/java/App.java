@@ -344,15 +344,14 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       Trainer trainer;
       try {
-        trainer = Trainer.findByName(request.queryParams("nickname"));
-      } catch (UnsupportedOperationException e) {
         trainer = new Trainer("", "", "", "", "", "", "", request.queryParams("email"), request.queryParams("nickname"), Integer.parseInt(request.queryParams("level")));
+      } catch (UnsupportedOperationException e){
+        trainer = Trainer.findByName(request.queryParams("nickname"));
+        if(e.getMessage()=="Trainer already exists") {
+          model.put("msg", "Welcome Back");
+        }
       }
-      try {
-        response.redirect("/pokemon/sightings/" + trainer.getId());
-      } catch(NullPointerException e) {
-        model.put("msg", e.getMessage());
-      }
+      response.redirect("/pokemon/sightings/"+trainer.getId());
       model.put("template", "templates/error.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());

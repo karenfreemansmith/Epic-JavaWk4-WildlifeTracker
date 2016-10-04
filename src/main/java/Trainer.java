@@ -22,13 +22,9 @@ public class Trainer extends Person {
 
   public void save() {
     try(Connection cn = DB.sql2o.open()) {
-
-      //test to see if trainername is in database already
-      //String sql = "SELECT id FROM people WHERE trainername= :trainername";
-      // int count=(int)cn.createQuery(sql)
-      //   .addParameter("trainername", this.trainername);
-      //   .executeAndFetchFirst(Integer.class);
-      // if(count==0) {
+      if(Trainer.findByName(this.trainerName)!=null) {
+        throw new UnsupportedOperationException("Trainer already exists");
+      } else {
         String sql = "INSERT INTO people (firstname, lastname, phonenumber, address, city, state, zip, email, trainername, level, type) VALUES (:firstname, :lastname, :phonenumber, :address, :city, :state, :zip, :email, :trainername, :level, 3)";
         this.id = (int) cn.createQuery(sql, true)
           .addParameter("lastname", this.lastname)
@@ -44,7 +40,7 @@ public class Trainer extends Person {
           .throwOnMappingFailure(false)
           .executeUpdate()
           .getKey();
-    //  }
+      }
     }
   }
 
@@ -76,8 +72,6 @@ public class Trainer extends Person {
         .throwOnMappingFailure(false)
         .executeAndFetchFirst(Trainer.class);
       return trainer;
-    } catch (NullPointerException e) {
-      throw new UnsupportedOperationException("Trainer Not Found");
     }
   }
 
