@@ -4,7 +4,7 @@ import org.sql2o.*;
 public class DBRule extends ExternalResource {
   @Override
   protected void before() {
-    DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/wildlife_tracker_test", null, null);
+    DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/wildlife_tracker_test", "postgres", null);
   }
 
   @Override

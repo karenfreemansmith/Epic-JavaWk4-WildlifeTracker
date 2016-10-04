@@ -156,9 +156,17 @@ public class App {
 
     post("/sign-in/visitors", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      Visitor visitor = new Visitor("", "", "", "", "", "", "", request.queryParams("email"));
+      Visitor visitor;
+      try {
+        visitor = new Visitor("", "", "", "", "", "", "", request.queryParams("email"));
+      } catch (UnsupportedOperationException e) {
+        visitor = Visitor.findByEmail(request.queryParams("email"));
+        if(e.getMessage()=="Visitor already exists") {
+          model.put("msg", "Welcome Back");
+        }
+      }
       response.redirect("/animals/sightings/" + visitor.getId());
-      model.put("template", "templates/endangered.vtl");
+      model.put("template", "templates/error.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
