@@ -20,7 +20,7 @@ public class Sighting {
 
   public void save() {
     try(Connection cn = DB.sql2o.open()) {
-      String sql = "INSERT INTO sightings (animalId, locationId, personId, time) VALUES (:animalId, :locationId, :personId, now())";
+      String sql = "INSERT INTO sightings (animalId, locationId, personId, time, cp) VALUES (:animalId, :locationId, :personId, now(), 0)";
       this.id = (int) cn.createQuery(sql, true)
         .addParameter("animalId", this.animalId)
         .addParameter("locationId", this.locationId)
@@ -71,8 +71,7 @@ public class Sighting {
   }
 
   public static List<Sighting> allAnimals() {
-    //String sql = "SELECT animals.type FROM sightings JOIN animals ON (sightings.animalId=animals.id) WHERE NOT animal.type = 3 ORDER BY time ASC";
-    String sql = "SELECT * FROM sightings ORDER BY time DESC";
+    String sql = "SELECT * FROM sightings WHERE cp=0 ORDER BY time DESC";
     try(Connection cn = DB.sql2o.open()) {
       return cn.createQuery(sql)
       .throwOnMappingFailure(false)
@@ -81,8 +80,7 @@ public class Sighting {
   }
 
   public static List<Sighting> allEndangered() {
-    //String sql = "SELECT animals.type FROM sightings JOIN animals ON (sightings.animalId=animals.id) WHERE animal.type = 2 ORDER BY time ASC";
-    String sql = "SELECT * FROM sightings ORDER BY time DESC";
+    String sql = "SELECT * FROM sightings WHERE age>0 ORDER BY time DESC";
     try(Connection cn = DB.sql2o.open()) {
       return cn.createQuery(sql)
       .throwOnMappingFailure(false)
@@ -92,8 +90,7 @@ public class Sighting {
 
 
   public static List<Sighting> allPokemon() {
-    //String sql = "SELECT animals.type FROM sightings JOIN animals ON (sightings.animalId=animals.id) WHERE animal.type = 3 ORDER BY time DESC";
-    String sql = "SELECT * FROM sightings ORDER BY time DESC";
+    String sql = "SELECT * FROM sightings WHERE cp>0 ORDER BY time DESC";
     try(Connection cn = DB.sql2o.open()) {
       return cn.createQuery(sql)
       .throwOnMappingFailure(false)
