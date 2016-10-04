@@ -17,9 +17,10 @@ public class Endangered extends Sighting {
     } else {
       this.health = health;
     }
-    save();
+    this.save();
   }
 
+  @Override
   public void save() {
     try(Connection cn = DB.sql2o.open()) {
       String sql = "INSERT INTO sightings (animalId, locationId, personId, time, age, health) VALUES (:animalId, :locationId, :personId, now(), :age, :health)";

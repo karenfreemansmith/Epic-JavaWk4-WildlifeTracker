@@ -22,7 +22,7 @@
         </select>
       </div>
       <div class="form-group">
-        <label for="cp">Pokemon CP>
+        <label for="cp">Pokemon CP
         <input type="number" name="cp" id="cp" class="form-control">
       </div>
       <div class="form-group">
@@ -40,43 +40,43 @@
     <form action="/profile/trainers/$person.getId()" method="post">
       <div class="form-group col-xs-6">
         <label for="first">First name: </label>
-        <input id="first" name="first" class="form-control" type="text">
+        <input id="first" name="first" class="form-control" type="text" value="$person.getFirstName()">
       </div>
       <div class="form-group col-xs-6">
         <label for="last">Last Name: </label>
-        <input id="last" name="last" class="form-control" type="text">
+        <input id="last" name="last" class="form-control" type="text" value="$person.getLastName()">
       </div>
       <div class="form-group col-xs-6">
         <label for="phone">Phone Number: </label>
-        <input id="phone" name="phone" class="form-control" type="text">
+        <input id="phone" name="phone" class="form-control" type="text" value="$person.getPhoneNumber()">
       </div>
       <div class="form-group col-xs-6">
         <label for="address">Street Address: </label>
-        <input id="address" name="address" class="form-control" type="text">
+        <input id="address" name="address" class="form-control" type="text" value="$person.getAddress()">
       </div>
       <div class="form-group col-xs-6">
         <label for="city">City: </label>
-        <input id="city" name="city" class="form-control" type="text">
+        <input id="city" name="city" class="form-control" type="text" value="$person.getCity()">
       </div>
       <div class="form-group col-xs-3">
         <label for="state">State: </label>
-        <input id="state" name="state" class="form-control" type="text">
+        <input id="state" name="state" class="form-control" type="text" value="$person.getState()">
       </div>
       <div class="form-group col-xs-3">
         <label for="zip">Zip: </label>
-        <input id="zip" name="zip" class="form-control" type="text">
+        <input id="zip" name="zip" class="form-control" type="text" value="$person.getZip()">
       </div>
       <div class="form-group col-xs-9">
         <label for="email">Email: </label>
-        <input id="email" name="email" class="form-control" type="text">
+        <input id="email" name="email" class="form-control" type="text" value="$person.getEmail()">
       </div>
       <div class="form-group col-xs-6">
         <label for="nickname">Trainer Nickname: </label>
-        <input id="nickname" name="nickname" class="form-control" type="text">
+        <input id="nickname" name="nickname" class="form-control" type="text" value="$person.getTrainerName()">
       </div>
       <div class="form-group col-xs-6">
         <label for="level">Trainer Level: </label>
-        <input id="level" name="level" class="form-control" type="number">
+        <input id="level" name="level" class="form-control" type="number" value="$person.getLevel()">
       </div>
       <button type='submit' class='btn btn-default form-control'>Update Profile</button>
     </form>

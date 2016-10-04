@@ -72,10 +72,9 @@ Final Project for Week 4, Java at Epicodus. A program to track wildlife sighting
 For questions, concerns, or suggestions please email karenfreemansmith@gmail.com
 
 ## Known Issues
-* Trying to use constants broke SQL statements, need to find somewhere else to use them
-* Broken throws exception - not catching correct error to activate catch block
-* Broken attempt(s) to join tables and sort pokemon from real animals - both show where only one is wanted
-* Pages with lists load extremely slow...
+* Pages listing animals or sightings load extremely slow
+* Getting some duplicate entries on sightings for no apparent reason (extended classes only)
+* Broken attempt(s) to join tables and sort Pokemon from real animals - both show where only one is wanted
 
 ## Technologies Used
 Java, JUnit, Spark, PostgreSQL, Gradle
