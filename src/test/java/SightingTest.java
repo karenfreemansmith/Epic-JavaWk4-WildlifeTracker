@@ -11,7 +11,9 @@ public class SightingTest {
   @Before
   public void setup() {
     sighting1 = new Sighting(1,2,2);
+    sighting1.save();
     sighting2 = new Sighting(2,1,1);
+    sighting2.save();
   }
 
   @Test
