@@ -37,6 +37,11 @@ public class TrainerTest {
   }
 
   @Test
+  public void findByName_returnCorrectTrainer_true() {
+    assertTrue(Trainer.findByName(trainer1.getTrainerName()).equals(trainer1));
+  }
+
+  @Test
   public void getTrainerName_returnsCorrectTrainerName_String() {
     assertEquals("YogiBear", trainer1.getTrainerName());
   }

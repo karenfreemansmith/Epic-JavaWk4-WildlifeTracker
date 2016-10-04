@@ -37,6 +37,11 @@ public class VisitorTest {
   }
 
   @Test
+  public void findByEmail_returnCorrectVisitor_true() {
+    assertTrue(Visitor.findByEmail(visitor1.getEmail()).equals(visitor1));
+  }
+
+  @Test
   public void getFirstName_returnsCorrectName_String() {
     assertEquals("Joe", visitor1.getFirstName());
   }
