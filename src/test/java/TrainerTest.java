@@ -41,6 +41,12 @@ public class TrainerTest {
     assertTrue(Trainer.findByName(trainer1.getTrainerName()).equals(trainer1));
   }
 
+  @Test(expected = UnsupportedOperationException.class)
+  public void save_throwsExceptionIfTrainerAlreadyExists(){
+    Trainer dupTrainer = new Trainer("Joe", "Smith", "321-456-9876", "1234 Center St", "Bolder", "MT", "65432", "joe@smith.com", "YogiBear", 14);
+  }
+
+
   @Test
   public void getTrainerName_returnsCorrectTrainerName_String() {
     assertEquals("YogiBear", trainer1.getTrainerName());

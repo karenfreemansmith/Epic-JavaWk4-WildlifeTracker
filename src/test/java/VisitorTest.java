@@ -41,6 +41,12 @@ public class VisitorTest {
     assertTrue(Visitor.findByEmail(visitor1.getEmail()).equals(visitor1));
   }
 
+  @Test(expected = UnsupportedOperationException.class)
+  public void save_throwsExceptionIfVisitorAlreadyExists(){
+    Visitor dupVisitor = new Visitor("Joe", "Smith", "321-456-9876", "1234 Center St", "Bolder", "MT", "65432", "joe@smith.com");
+  }
+
+
   @Test
   public void getFirstName_returnsCorrectName_String() {
     assertEquals("Joe", visitor1.getFirstName());
