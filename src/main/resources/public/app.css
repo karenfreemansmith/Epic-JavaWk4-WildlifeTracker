@@ -26,6 +26,13 @@ h2, h3 {
   font-family: 'Poiret One', cursive;
 }
 
+.error {
+  font-weight: bolder;
+  color: red;
+  background: goldenrod;
+  border: red solid 2px;
+}
+
 .featured {
   text-align: center;
 }

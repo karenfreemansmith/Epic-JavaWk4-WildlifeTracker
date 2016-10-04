@@ -7,8 +7,16 @@ public class Endangered extends Sighting {
 
   public Endangered(int personId, int animalId, int locationId, int age, int health) {
     super(personId, animalId, locationId);
-    this.age = age;
-    this.health = health;
+    if(age>4||age<1) {
+      throw new IllegalArgumentException("Endangered animals require an age");
+    } else {
+      this.age=age;
+    }
+    if(health>5||health<1) {
+      throw new IllegalArgumentException("Endangered animals require a health status");
+    } else {
+      this.health = health;
+    }
     save();
   }
 

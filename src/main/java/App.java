@@ -182,7 +182,7 @@ public class App {
       person.setZip(request.queryParams("zip"));
       person.setEmail(request.queryParams("email"));
       response.redirect("/animals/sightings/" + person.getId());
-      model.put("template", "templates/endangered.vtl");
+      model.put("template", "templates/error.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -219,12 +219,16 @@ public class App {
 
     post("/endangered/sightings/:rangerid", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      int personId = Integer.parseInt(request.params(":id"));
+      int personId = Integer.parseInt(request.params(":rangerid"));
       int animalId = Integer.parseInt(request.queryParams("animal"));
       int locationId = Integer.parseInt(request.queryParams("location"));
       int age = Integer.parseInt(request.queryParams("age"));
       int health = Integer.parseInt(request.queryParams("health"));
-      Endangered sighting = new Endangered(personId, animalId, locationId, age, health);
+      try {
+        Endangered sighting = new Endangered(personId, animalId, locationId, age, health);
+      } catch(IllegalArgumentException e) {
+        model.put("msg", "Sighting not saved: " + e.getMessage());
+      }
       model.put("person", Ranger.find(Integer.parseInt(request.params(":rangerid"))));
       model.put("sightings", Sighting.allEndangered());
       model.put("animals", Animal.all());

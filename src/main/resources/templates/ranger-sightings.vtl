@@ -10,6 +10,9 @@
     </div>
   </div>
   <div class="col-xs-3">
+    #if($msg)
+    <strong class="error">$msg</strong>
+    #end
     #if($person)
     <h4>Report Sighting</h4>
     <form action="/endangered/sightings/$person.getId()" method="post">
