@@ -107,7 +107,7 @@ public class App {
     get("/admin/rangers/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("ranger", Ranger.find(Integer.parseInt(request.params(":id"))));
-      model.put("sightings", Sighting.allByRanger(Integer.parseInt(request.params(":id"))));
+      model.put("sightings", Endangered.allByRanger(Integer.parseInt(request.params(":id"))));
       model.put("template", "templates/ranger-admin.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -126,7 +126,7 @@ public class App {
       person.setBadge(Integer.parseInt(request.queryParams("badge")));
       person.setContact(request.queryParams("contact"));
       model.put("ranger", Ranger.find(Integer.parseInt(request.params(":id"))));
-      model.put("sightings", Sighting.allByRanger(Integer.parseInt(request.params(":id"))));
+      model.put("sightings", Endangered.allByRanger(Integer.parseInt(request.params(":id"))));
       model.put("template", "templates/ranger-admin.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -202,8 +202,8 @@ public class App {
     get("/endangered/id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("animal", Animal.find(Integer.parseInt(request.params(":id"))));
-      model.put("sightings", Sighting.allEndangered());
-      model.put("template", "templates/endangered.vtl");
+      model.put("sightings", Sighting.allByAnimal(Integer.parseInt(request.params(":id"))));
+      model.put("template", "templates/animal.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 

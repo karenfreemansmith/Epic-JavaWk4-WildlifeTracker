@@ -1,5 +1,42 @@
 <h1><a href="/">Wildlife Tracker</a></h1>
 <div class="row">
+<div class="col-xs-8">
+  #if($sightings)
+  <h3>Sightings:</h3>
+  <div class="row">
+    <div class="col-xs-3"><h3>Time:</h3></div>
+    <div class="col-xs-2">
+      <h3>Animal</h3>
+    </div>
+    <div class="col-xs-3">
+      <h3>Location</h3>
+    </div>
+    <div class="col-xs-2">
+      <h3>Age</h3>
+    </div>
+    <div class="col-xs-2">
+      <h3>Health</h3>
+    </div>
+  </div>
+  #foreach($sighting in $sightings)
+  <div class="row">
+    <div class="col-xs-3">$sighting.getTime()</div>
+    <div class="col-xs-2">
+      $sighting.getAnimal()
+    </div>
+    <div class="col-xs-3">
+      $sighting.getLocation()
+    </div>
+    <div class="col-xs-2">
+      $sighting.getAge()
+    </div>
+    <div class="col-xs-2">
+      $sighting.getHealth()
+    </div>
+  </div>
+  #end
+  #end
+</div>
   <div class="col-xs-4">
     <h2>Ranger $ranger.getBadge() - $ranger.getFirstName() $ranger.getLastName()</h2>
     <p><a href="/admin">Back to Admin</a></p>
@@ -47,29 +84,5 @@
       <button type='submit' class='btn btn-default form-control'>Update Ranger Information</button>
     </form>
   </div>
-  <div class="col-xs-8">
-    #if($sightings)
-    <h3>Sightings:</h3>
-    <div class="row">
-      <div class="col-xs-3"><h3>Time:</h3></div>
-      <div class="col-xs-4">
-        <h3>Animal</h3>
-      </div>
-      <div class="col-xs-5">
-        <h3>Location</h3>
-      </div>
-    </div>
-    #foreach($sighting in $sightings)
-    <div class="row">
-      <div class="col-xs-3">$sighting.getTime()</div>
-      <div class="col-xs-4">
-        $sighting.getAnimal()
-      </div>
-      <div class="col-xs-5">
-        $sighting.getLocation()
-      </div>
-    </div>
-    #end
-    #end
-  </div>
+
 </div>

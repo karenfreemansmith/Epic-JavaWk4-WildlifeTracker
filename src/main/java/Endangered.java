@@ -47,7 +47,7 @@ public class Endangered extends Sighting {
   public void setAge(int age) {
     this.age=age;
     try(Connection cn = DB.sql2o.open()) {
-      String sql = "UPDATE animals SET age = :age WHERE id = :id";
+      String sql = "UPDATE sightings SET age = :age WHERE id = :id";
       cn.createQuery(sql)
         .addParameter("age", age)
         .addParameter("id", id)
@@ -62,7 +62,7 @@ public class Endangered extends Sighting {
   public void setHealth(int health) {
     this.health=health;
     try(Connection cn = DB.sql2o.open()) {
-      String sql = "UPDATE animals SET health = :health WHERE id = :id";
+      String sql = "UPDATE sightings SET health = :health WHERE id = :id";
       cn.createQuery(sql)
         .addParameter("health", health)
         .addParameter("id", id)

@@ -60,13 +60,13 @@ public class Sighting {
     }
   }
 
-  public static List<Sighting> allByRanger(int id) {
+  public static List<Endangered> allByRanger(int id) {
     String sql = "SELECT * FROM sightings WHERE personid = :id ORDER BY time DESC";
     try(Connection cn = DB.sql2o.open()) {
       return cn.createQuery(sql)
       .addParameter("id", id)
       .throwOnMappingFailure(false)
-      .executeAndFetch(Sighting.class);
+      .executeAndFetch(Endangered.class);
     }
   }
 
