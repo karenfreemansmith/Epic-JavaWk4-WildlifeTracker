@@ -14,7 +14,7 @@
       #foreach($sighting in $sightings)
         <div class="row">
           <div class="col-xs-6"><h4>$sighting.getTime()</h4></div>
-          <div class="col-xs-6"><h4><a href="/locations/$sighting.getId()">$sighting.getLocation()</a></h4></div>
+          <div class="col-xs-6"><h4><a href="/locations/$sighting.getLocationId()">$sighting.getLocation()</a></h4></div>
         </div>
       #end
     #end
