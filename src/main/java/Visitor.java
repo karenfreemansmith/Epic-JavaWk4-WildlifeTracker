@@ -13,23 +13,25 @@ public class Visitor extends Person {
     this.email = email;
     this.save();
   }
-
   public void save() {
     try(Connection cn = DB.sql2o.open()) {
-      //test to see if email is in database already
-      String sql = "INSERT INTO people (firstname, lastname, phonenumber, address, city, state, zip, email, type) VALUES (:firstname, :lastname, :phonenumber, :address, :city, :state, :zip, :email, 2)";
-      this.id = (int) cn.createQuery(sql, true)
-        .addParameter("lastname", this.lastname)
-        .addParameter("firstname", this.firstname)
-        .addParameter("phonenumber", this.phonenumber)
-        .addParameter("address", this.address)
-        .addParameter("city", this.city)
-        .addParameter("state", this.state)
-        .addParameter("zip", this.zip)
-        .addParameter("email", this.email)
-        .throwOnMappingFailure(false)
-        .executeUpdate()
-        .getKey();
+      if(Visitor.findByEmail(this.email)!=null) {
+        throw new UnsupportedOperationException("Visitor already exists");
+      } else {
+        String sql = "INSERT INTO people (firstname, lastname, phonenumber, address, city, state, zip, email, type) VALUES (:firstname, :lastname, :phonenumber, :address, :city, :state, :zip, :email, 2)";
+        this.id = (int) cn.createQuery(sql, true)
+          .addParameter("lastname", this.lastname)
+          .addParameter("firstname", this.firstname)
+          .addParameter("phonenumber", this.phonenumber)
+          .addParameter("address", this.address)
+          .addParameter("city", this.city)
+          .addParameter("state", this.state)
+          .addParameter("zip", this.zip)
+          .addParameter("email", this.email)
+          .throwOnMappingFailure(false)
+          .executeUpdate()
+          .getKey();
+      }
     }
   }
 
@@ -53,4 +55,14 @@ public class Visitor extends Person {
     }
   }
 
+  public static Visitor findByEmail(String email) {
+    try(Connection cn = DB.sql2o.open()) {
+      String sql = "SELECT * FROM people WHERE email=:email";
+      Visitor visitor = cn.createQuery(sql)
+        .addParameter("email", email)
+        .throwOnMappingFailure(false)
+        .executeAndFetchFirst(Visitor.class);
+      return visitor;
+    }
+  }
 }
