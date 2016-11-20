@@ -7,8 +7,32 @@ by [Karen Freeman-Smith](https://github.com/karenfreemansmith)
 ## Description
 Final Project for Week 4, Java at Epicodus. A program to track wildlife sightings using Java, PostgreSQL, and Spark with JUnit tests demonstrating abstract classes, interfaces, many-to-many database relationships and RESTful routing.
 
-### Specifications
-#### User Stories:
+## Technologies Used
+Java, JUnit, Spark, PostgreSQL, Gradle
+
+## Setup/Installation
+* Clone directory
+* Setup database in PSQL:
+  * CREATE DATABASE wildlife_tracker;
+  * \c wildlife_tracker
+  * CREATE TABLE animals (id serial PRIMARY KEY, animalName varchar, photo varchar, type int);
+  * CREATE TABLE sightings (id serial PRIMARY KEY, animalId int, personId int, locationId int, time timestamp, age int, health int, cp int);
+  * CREATE TABLE people (id serial PRIMARY KEY, firstname varchar, lastname varchar, phonenumber varchar, address varchar, city varchar, state varchar, zip varchar, email varchar, badge int, workcontact varchar, trainerName varchar, level int, type int);
+  * CREATE TABLE locations (id serial PRIMARY KEY, description varchar, maprow int, mapcol int);
+  * CREATE DATABASE wildlife_tracker_test WITH TEMPLATE wildlife_tracker;
+* OR ... restore database from backup by running
+  * CREATE DATABASE wildlife_tracker;
+  * psql wildlife_tracker < wildlife.sql
+  * CREATE DATABASE wildlife_tracker_test;
+  * psql wildlife_tracker_test < wildlife.sql
+* Type 'gradle run' inside the project directory
+* Navigate to 'http://localhost:4567'
+
+## Support & Contact
+For questions, concerns, or suggestions please email karenfreemansmith@gmail.com
+
+## Specifications
+### User Stories:
 * As a supervisor, I can add/edit/delete animals.
 * As a supervisor, I can add/edit/delete locations.
 * As a supervisor, I can add/edit rangers. (Rangers should not be deleted)
@@ -23,7 +47,10 @@ Final Project for Week 4, Java at Epicodus. A program to track wildlife sighting
 * As a website user, I can view a page that lists all sightings in a certain location.
 * As a website user, I can view a page that lists all sightings for a specified animal.
 
-#### Technical Specifications:
+### Database Diagram:
+![database diagram](database.png)
+
+### Technical Specifications:
 | _Behavior_ | _Input_ | _Output_ |
 |:---------------------------------------------------------------------:|:---------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------:|
 | Store Animal Types | "Bear" | "Bear" |
@@ -47,39 +74,12 @@ Final Project for Week 4, Java at Epicodus. A program to track wildlife sighting
 | returns sightings by ranger | ranger(1) | list of sightings |
 | returns sightings by animal | animal(1) | list of sightings |
 
-#### Database Diagram:
-![database diagram](database.png)
-
-## Setup/Installation
-* Clone directory
-* Setup database in PSQL:
-  * CREATE DATABASE wildlife_tracker;
-  * \c wildlife_tracker
-  * CREATE TABLE animals (id serial PRIMARY KEY, animalName varchar, photo varchar, type int);
-  * CREATE TABLE sightings (id serial PRIMARY KEY, animalId int, personId int, locationId int, time timestamp, age int, health int, cp int);
-  * CREATE TABLE people (id serial PRIMARY KEY, firstname varchar, lastname varchar, phonenumber varchar, address varchar, city varchar, state varchar, zip varchar, email varchar, badge int, workcontact varchar, trainerName varchar, level int, type int);
-  * CREATE TABLE locations (id serial PRIMARY KEY, description varchar, maprow int, mapcol int);
-  * CREATE DATABASE wildlife_tracker_test WITH TEMPLATE wildlife_tracker;
-* OR ... restore database from backup by running
-  * CREATE DATABASE wildlife_tracker;
-  * psql wildlife_tracker < wildlife.sql
-  * CREATE DATABASE wildlife_tracker_test;
-  * psql wildlife_tracker_test < wildlife.sql
-* Type 'gradle run' inside the project directory
-* Navigate to 'http://localhost:4567'
-
-## Support & Contact
-For questions, concerns, or suggestions please email karenfreemansmith@gmail.com
-
 ## Known Issues
 * Pages listing animals or sightings load extremely slow
 * Getting some duplicate entries on sightings for no apparent reason (extended classes only)
 * Broken attempt(s) to join tables and sort Pokemon from real animals - both show where only one is wanted
 
-## Technologies Used
-Java, JUnit, Spark, PostgreSQL, Gradle
-
 ## Legal
 *Licensed under the GNU General Public License v3.0*
 
-Copyright (c) 2016 Copyright _Karen Freeman-Smith_ All Rights Reserved.
+Copyright (c) 2016 Copyright _[Karen Freeman-Smith](https://karenfreemansmith.github.io)_ All Rights Reserved.
