@@ -1,6 +1,6 @@
 # Wildlife Tracker
 Version 0.0.1: September 30, 2016
-by [Karen Freeman-Smith](https://github.com/karenfreemansmith)
+by [Karen Freeman-Smith](https://karenfreemansmith.github.io)
 
 ![screenshot of project running](screenshot.png)
 
