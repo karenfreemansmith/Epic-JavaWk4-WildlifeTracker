@@ -1,8 +1,8 @@
-![screenshot of project running](screenshot.png)
-
 # Wildlife Tracker
+Version 0.0.1: September 30, 2016
 by [Karen Freeman-Smith](https://github.com/karenfreemansmith)
-Version 0.0.0: September 30, 2016
+
+![screenshot of project running](screenshot.png)
 
 ## Description
 Final Project for Week 4, Java at Epicodus. A program to track wildlife sightings using Java, PostgreSQL, and Spark with JUnit tests demonstrating abstract classes, interfaces, many-to-many database relationships and RESTful routing.
